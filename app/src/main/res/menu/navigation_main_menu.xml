@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/navigation_category"
+        android:id="@+id/navigation_cartridge"
         android:icon="@drawable/selector_cartridge_icon"
         android:title="@string/label_cartridge_icon"
 
         />
 
     <item
-        android:id="@+id/navigation_home"
+        android:id="@+id/navigation_recipe"
         android:icon="@drawable/selector_recipe_icon"
         android:title="@string/label_recipe_icon"
 
         />
 
     <item
-        android:id="@+id/navigation_cart"
+        android:id="@+id/navigation_seasoning"
         android:icon="@drawable/selector_seasoning_icon"
         android:title="@string/label_seasoning_icon"
 
