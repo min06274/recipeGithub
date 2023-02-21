@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">recipe-android</string>
+    <string name="label_cartridge_icon">Cartridge</string>
+    <string name="label_recipe_icon">Recipe</string>
+    <string name="label_seasoning_icon">Seasoning</string>
 </resources>
