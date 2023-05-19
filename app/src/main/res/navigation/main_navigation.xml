@@ -13,7 +13,7 @@
         android:name="min.bo.recipe.app.CartridgeFragment"
         android:label="CartridgeFragment" />
     <fragment
-        android:id="@+id/navigation_seasoning"
-        android:name="min.bo.recipe.app.SeasoningFragment"
-        android:label="SeasoningFragment" />
+        android:id="@+id/navigation_select"
+        android:name="min.bo.recipe.app.SelectFragment"
+        android:label="SelectFragment" />
 </navigation>

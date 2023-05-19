@@ -1,0 +1,44 @@
+{
+
+  "title": {
+    "text": "시리얼 개별 출력"
+  },
+
+  "top_banners": [
+    {
+      "background_image_url": "",
+      "label": "탄수화물",
+      "product_detail": {
+        "brand_name":"켈로그",
+        "detail": "100g당 탄수화물 20g",
+        "product_id": "cereal1"
+      }
+    },
+
+
+
+
+    {
+      "background_image_url": "",
+      "label": "단백질",
+      "product_detail": {
+        "brand_name":"마이프로틴",
+        "detail": "100g당 단백질 20g",
+        "product_id": "cereal2"
+      }
+    },
+
+
+
+    {
+      "background_image_url": "",
+      "label": "지방",
+      "product_detail": {
+        "brand_name":"견과류",
+        "detail": "100g당 지방 20g",
+        "product_id": "cereal3"
+      }
+    }
+  ]
+
+}

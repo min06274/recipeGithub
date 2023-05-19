@@ -15,9 +15,9 @@
         />
 
     <item
-        android:id="@+id/navigation_seasoning"
-        android:icon="@drawable/selector_seasoning_icon"
-        android:title="@string/label_seasoning_icon"
+        android:id="@+id/navigation_select"
+        android:icon="@drawable/selector_select_icon"
+        android:title="@string/label_select_icon"
 
         />
 </menu>
