@@ -1,4 +1,4 @@
-package min.bo.recipe.app
+package min.bo.recipe.app.model
 
 data class Title(
 

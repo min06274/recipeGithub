@@ -6,14 +6,14 @@
 
     <fragment
         android:id="@+id/navigation_recipe"
-        android:name="min.bo.recipe.app.RecipeFragment"
+        android:name="min.bo.recipe.app.ui.RecipeFragment"
         android:label="RecipeFragment" />
     <fragment
         android:id="@+id/navigation_cartridge"
-        android:name="min.bo.recipe.app.CartridgeFragment"
+        android:name="min.bo.recipe.app.ui.CartridgeFragment"
         android:label="CartridgeFragment" />
     <fragment
         android:id="@+id/navigation_select"
-        android:name="min.bo.recipe.app.SelectFragment"
+        android:name="min.bo.recipe.app.ui.select.SelectFragment"
         android:label="SelectFragment" />
 </navigation>

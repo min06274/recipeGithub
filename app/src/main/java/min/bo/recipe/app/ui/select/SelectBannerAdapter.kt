@@ -1,4 +1,4 @@
-package min.bo.recipe.app
+package min.bo.recipe.app.ui.select
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +8,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import min.bo.recipe.app.Banner
+import min.bo.recipe.app.GlideApp
+import min.bo.recipe.app.R
 
-class SelectBannerAdapter: ListAdapter<Banner,SelectBannerAdapter.SelectBannerViewHolder>(BannerDiffCallback()) {
+class SelectBannerAdapter: ListAdapter<Banner, SelectBannerAdapter.SelectBannerViewHolder>(
+    BannerDiffCallback()
+) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SelectBannerViewHolder {
@@ -28,7 +33,7 @@ class SelectBannerAdapter: ListAdapter<Banner,SelectBannerAdapter.SelectBannerVi
         private val bannerDetailBrandLabelTextView = view.findViewById<TextView>(R.id.tv_banner_detail_brand_label)
         private val bannerDetailInformationLabelTextView = view.findViewById<TextView>(R.id.tv_banner_detail_information_label)
 
-        fun bind(banner:Banner){
+        fun bind(banner: Banner){
         loadImage(banner.backgroundImageUrl,bannerImageView)
 
 
