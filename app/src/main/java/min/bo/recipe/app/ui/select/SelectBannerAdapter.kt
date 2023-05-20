@@ -11,15 +11,17 @@ import androidx.recyclerview.widget.RecyclerView
 import min.bo.recipe.app.Banner
 import min.bo.recipe.app.GlideApp
 import min.bo.recipe.app.R
+import min.bo.recipe.app.databinding.ItemSelectBannerBinding
 
 class SelectBannerAdapter: ListAdapter<Banner, SelectBannerAdapter.SelectBannerViewHolder>(
     BannerDiffCallback()
 ) {
 
+    private lateinit var binding: ItemSelectBannerBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SelectBannerViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_select_banner,parent,false)
-        return SelectBannerViewHolder(view)
+        binding = ItemSelectBannerBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        return SelectBannerViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: SelectBannerViewHolder, position: Int) {
@@ -27,28 +29,17 @@ class SelectBannerAdapter: ListAdapter<Banner, SelectBannerAdapter.SelectBannerV
     }
 
 
-    class SelectBannerViewHolder(view:View):RecyclerView.ViewHolder(view){
-        private val bannerImageView = view.findViewById<ImageView>(R.id.iv_banner_image)
-        private val bannerTitleTextView = view.findViewById<TextView>(R.id.tv_banner_title)
-        private val bannerDetailBrandLabelTextView = view.findViewById<TextView>(R.id.tv_banner_detail_brand_label)
-        private val bannerDetailInformationLabelTextView = view.findViewById<TextView>(R.id.tv_banner_detail_information_label)
+    class SelectBannerViewHolder(private val binding: ItemSelectBannerBinding):RecyclerView.ViewHolder(binding.root){
+
 
         fun bind(banner: Banner){
-        loadImage(banner.backgroundImageUrl,bannerImageView)
 
-
-            bannerTitleTextView.text = banner.label
-            bannerDetailBrandLabelTextView.text = banner.productDetail.brandName
-            bannerDetailInformationLabelTextView.text = banner.productDetail.information
+            binding.banner = banner
+            binding.executePendingBindings()
 
         }
 
-        fun loadImage(urlString: String, imageView: ImageView)
-        {
-            GlideApp.with(itemView)
-                .load(urlString)
-                .into(imageView)
-        }
+
     }
 
 }
