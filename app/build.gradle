@@ -8,7 +8,7 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "min.bo.recipe.app"
+        applicationId "min.bo.shoppi.android"
         minSdk 21
         targetSdk 31
         versionCode 1
@@ -46,6 +46,7 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:1.2.1"
     implementation "com.github.bumptech.glide:glide:$glideVersion"
     kapt "com.github.bumptech.glide:compiler:$glideVersion"
+    implementation 'com.google.code.gson:gson:2.8.9'
 
 
     testImplementation 'junit:junit:4.13.2'

@@ -1,0 +1,45 @@
+
+{
+
+  "title": {
+    "text": "시리얼 선택 출력"
+  },
+
+  "top_banners": [
+    {
+      "background_image_url": "https://github.com/min06274/recipeGithub/assets/63834998/5768feb1-2423-4dd5-98f4-b751e0e084a2",
+      "label": "탄수화물",
+      "product_detail": {
+        "brand_name":"켈로그",
+        "information": "100g당 탄수화물 20g",
+        "product_id": "cereal1"
+      }
+    },
+
+
+
+
+    {
+      "background_image_url": "https://github.com/min06274/recipeGithub/assets/63834998/a02ae8f0-326f-41cd-bb8a-f57a64d59a96",
+      "label": "단백질",
+      "product_detail": {
+        "brand_name":"마이프로틴",
+        "information": "100g당 단백질 20g",
+        "product_id": "cereal2"
+      }
+    },
+
+
+
+    {
+      "background_image_url": "https://github.com/min06274/recipeGithub/assets/63834998/137b5623-5602-455c-954b-c04499dcfa94",
+      "label": "지방",
+      "product_detail": {
+        "brand_name":"견과류",
+        "information": "100g당 지방 20g",
+        "product_id": "cereal3"
+      }
+    }
+  ]
+
+}
