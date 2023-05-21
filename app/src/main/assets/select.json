@@ -40,6 +40,17 @@
         "product_id": "cereal3"
       }
     }
+  ],
+
+  "cereals": [
+    {
+      "name": "1번시리얼",
+      "information" : "100g당 탄수 10g"
+    }
+
+
+
   ]
+
 
 }
