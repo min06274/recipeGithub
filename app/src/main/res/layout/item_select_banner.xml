@@ -47,7 +47,7 @@
             android:layout_height="85dp"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginBottom="70dp"
             android:background="@drawable/background_white"
             app:layout_constraintStart_toStartOf="@id/iv_banner_image"
             app:layout_constraintEnd_toEndOf="@id/iv_banner_image"
@@ -74,7 +74,7 @@
             android:id="@+id/tv_banner_detail_information_label"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:text="@{banner.productDetail.information}"
 
             app:layout_constraintTop_toBottomOf="@id/tv_banner_detail_brand_label"
@@ -82,6 +82,10 @@
             app:layout_constraintEnd_toEndOf="@id/tv_banner_detail_brand_label"
             tools:text="100g 당 탄수화물 20g"
             android:textAlignment="center" />
+
+
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
