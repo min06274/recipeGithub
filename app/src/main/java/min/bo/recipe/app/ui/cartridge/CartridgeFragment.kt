@@ -1,15 +1,22 @@
 package min.bo.recipe.app.ui.cartridge
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import min.bo.recipe.app.R
+import min.bo.recipe.app.ui.category.CategoryViewModel
+import min.bo.recipe.app.ui.common.ViewModelFactory
+import org.json.JSONObject
+import java.io.File
 
 class CartridgeFragment:Fragment() {
 
+    private val viewModel: CategoryViewModel by viewModels{ViewModelFactory(requireContext())}
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -22,13 +29,11 @@ class CartridgeFragment:Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        val jsonButton: Button = view.findViewById(R.id.json_btn)
-        
-        
-        jsonButton.setOnClickListener{
-            jsonButton.text = "이이이"
-        }
 
+
+        viewModel.items.observe(viewLifecycleOwner){
+            Log.d("CategoryFragment","items = $it")
+        }
 
 
 
