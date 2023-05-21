@@ -6,7 +6,7 @@ class SelectRepository(private val assetDataSource: SelectAssetDataSource)
 {
 
 
-    fun getSelectData():SelectData?{
+    suspend fun getSelectData():SelectData?{
         return assetDataSource.getSelectData()
     }
 }

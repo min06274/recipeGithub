@@ -1,6 +1,7 @@
 package min.bo.recipe.app.network
 
 import min.bo.recipe.app.Banner
+import min.bo.recipe.app.model.SelectData
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -10,8 +11,8 @@ import retrofit2.http.GET
 interface ApiClient {
 
 
-    @GET("top_banners.json")
-    suspend fun getCategories(): List<Banner>
+    @GET(".json")
+    suspend fun getCategories(): SelectData?
 
 
 

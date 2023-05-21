@@ -3,6 +3,8 @@ package min.bo.recipe.app.ui.select
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 import min.bo.recipe.app.Banner
 import min.bo.recipe.app.model.Title
 import min.bo.recipe.app.repository.SelectRepository
@@ -22,12 +24,16 @@ class SelectViewModel(private val selectRepository: SelectRepository) : ViewMode
     }
 
     private fun loadSelectData(){
-        val selectData = selectRepository.getSelectData()
-        selectData?.let{selectData->
-            _title.value = selectData.title
-            _topBanners.value = selectData.topBanners
 
+        viewModelScope.launch {
+            val selectData = selectRepository.getSelectData()
+            selectData?.let{selectData->
+                _title.value = selectData.title
+                _topBanners.value = selectData.topBanners
+
+            }
         }
+
     }
 
 }
