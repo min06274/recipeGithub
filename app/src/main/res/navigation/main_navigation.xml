@@ -10,7 +10,7 @@
         android:label="RecipeFragment" />
     <fragment
         android:id="@+id/navigation_cartridge"
-        android:name="min.bo.recipe.app.ui.CartridgeFragment"
+        android:name="min.bo.recipe.app.ui.cartridge.CartridgeFragment"
         android:label="CartridgeFragment" />
     <fragment
         android:id="@+id/navigation_select"

@@ -2,13 +2,14 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
 }
 
 android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "min.bo.shoppi.android"
+        applicationId "min.bo.recipe.app"
         minSdk 21
         targetSdk 31
         versionCode 1
@@ -51,6 +52,14 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$glideVersion"
     kapt "com.github.bumptech.glide:compiler:$glideVersion"
     implementation 'com.google.code.gson:gson:2.8.9'
+
+
+    //Firebase
+
+
+    //Network
+
+
 
 
     testImplementation 'junit:junit:4.13.2'

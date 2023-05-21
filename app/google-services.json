@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "363102829282",
+    "project_id": "cereal-22a02",
+    "storage_bucket": "cereal-22a02.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:363102829282:android:f8646922f363ba3e20bcbb",
+        "android_client_info": {
+          "package_name": "min.bo.recipe.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "363102829282-foo8n47vmoavr0l4fe6kv5fml4am9gvv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpXV_NgFkH4sd40tpbJ8eGNU_7Fp7Vo-g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "363102829282-foo8n47vmoavr0l4fe6kv5fml4am9gvv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
