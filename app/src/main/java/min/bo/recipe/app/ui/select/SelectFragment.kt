@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -12,6 +14,11 @@ import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import min.bo.recipe.app.R
 import min.bo.recipe.app.databinding.FragmentSelectBinding
 import min.bo.recipe.app.ui.common.ViewModelFactory
@@ -20,6 +27,9 @@ class SelectFragment:Fragment() {
 
     private val viewModel : SelectViewModel by viewModels{ ViewModelFactory(requireContext()) }
     private lateinit var binding:FragmentSelectBinding
+
+    val database1 = Firebase.database("https://cereal-22a02-default-rtdb.asia-southeast1.firebasedatabase.app/")
+    val myRef = database1.getReference("top_banners")
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,6 +59,49 @@ class SelectFragment:Fragment() {
         val gramInformationEditText3: EditText = view.findViewById(R.id.gram_information3)
 
 
+        val cereal1:TextView = view.findViewById(R.id.carbo)
+        val cereal2:TextView = view.findViewById(R.id.protein)
+        val cereal3:TextView = view.findViewById(R.id.fat)
+
+        myRef.child("0").child("product_detail").child("brand_name").addListenerForSingleValueEvent(object :
+            ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val brandName = dataSnapshot.getValue(String::class.java)
+                cereal1.text = brandName
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Handle any errors that occur during the retrieval
+            }
+        })
+
+
+        myRef.child("1").child("product_detail").child("brand_name").addListenerForSingleValueEvent(object :
+            ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val brandName = dataSnapshot.getValue(String::class.java)
+                cereal2.text = brandName
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Handle any errors that occur during the retrieval
+            }
+        })
+
+        myRef.child("2").child("product_detail").child("brand_name").addListenerForSingleValueEvent(object :
+            ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val brandName = dataSnapshot.getValue(String::class.java)
+                cereal3.text = brandName
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Handle any errors that occur during the retrieval
+            }
+        })
+
+
+
         indivisualButton.setOnClickListener{
             val gramInformation1 = gramInformationEditText1.text.toString()
             val gramInformation2 = gramInformationEditText2.text.toString()
@@ -59,6 +112,12 @@ class SelectFragment:Fragment() {
             println(gramInformation2)
             println(gramInformation3)
 
+            /*
+            val webView = view.findViewById<WebView>(R.id.webView)
+            webView.settings.javaScriptEnabled =true
+            webView.webViewClient = WebViewClient()
+            webView.loadUrl("http://naver.com")
+*/
 
         }
 

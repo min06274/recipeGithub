@@ -54,7 +54,7 @@ class CartridgeFragment:Fragment() {
     private val database = FirebaseDatabase.getInstance("https://cereal-22a02-default-rtdb.asia-southeast1.firebasedatabase.app/")
     private val cerealsRef = database.getReference("cereals")
 
-    private val imageSize = 32
+    private val imageSize = 180
 
 
 
@@ -127,7 +127,7 @@ class CartridgeFragment:Fragment() {
         val model = Model.newInstance(requireContext())
 
 // Creates inputs for reference.
-        val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 32, 32, 3), DataType.FLOAT32)
+        val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 180, 180, 3), DataType.FLOAT32)
 
         val byteBuffer :ByteBuffer = ByteBuffer.allocateDirect(4*imageSize*imageSize*3)
         byteBuffer.order(ByteOrder.nativeOrder())
@@ -164,7 +164,7 @@ class CartridgeFragment:Fragment() {
             }
         }
         //val classes = arrayOf("Apple", "Banana", "Orange")
-        val classes = arrayOf("1번시리얼","2번시리얼","3번시리얼")
+        val classes = arrayOf("듀오링","오 그래놀라","코코 그래놀라")
 
         result.text = classes[maxPos]
 
