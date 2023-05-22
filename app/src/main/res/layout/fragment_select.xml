@@ -76,15 +76,83 @@
 
 
 
-
-                <EditText
-                    android:id="@+id/gram_information"
+                <TextView
+                    android:id="@+id/carbo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@id/viewpager_select_banner_indicator"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:text="탄수"
                     android:textSize="20sp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="20dp"
+                    />
+
+
+                <EditText
+                    android:id="@+id/gram_information1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/viewpager_select_banner_indicator"
+                    app:layout_constraintStart_toEndOf="@id/carbo"
+                    android:textSize="20sp"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    android:layout_marginLeft="10dp"
+
+                    />
+
+
+
+                <TextView
+                    android:id="@+id/protein"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/viewpager_select_banner_indicator"
+                    app:layout_constraintStart_toEndOf="@id/gram_information1"
+                    android:text="지방"
+                    android:textSize="20sp"
+
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    />
+
+
+                <EditText
+                    android:id="@+id/gram_information2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/viewpager_select_banner_indicator"
+                    app:layout_constraintStart_toEndOf="@id/protein"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="20dp"
+
+                    />
+
+
+
+                <TextView
+                    android:id="@+id/fat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/viewpager_select_banner_indicator"
+                    app:layout_constraintStart_toEndOf="@id/gram_information2"
+                    android:text="단백질"
+                    android:textSize="20sp"
+
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    />
+
+
+                <EditText
+                    android:id="@+id/gram_information3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/viewpager_select_banner_indicator"
+                    app:layout_constraintStart_toEndOf="@id/fat"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="20dp"
+
                     />
 
 
@@ -92,10 +160,11 @@
                     android:id="@+id/indivisual_print_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/gram_information"
+                    app:layout_constraintTop_toBottomOf="@id/gram_information1"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="50dp"
                     android:text="개별출력"
 
                     />

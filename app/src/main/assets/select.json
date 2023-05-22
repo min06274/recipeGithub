@@ -46,9 +46,17 @@
     {
       "name": "1번시리얼",
       "information" : "100g당 탄수 10g"
+    },
+
+    {
+      "name": "2번시리얼",
+      "information" : "50g당 탄수 10g"
+    },
+
+    {
+      "name": "3번시리얼",
+      "information" : "25g당 탄수 10g"
     }
-
-
 
   ]
 

@@ -44,13 +44,22 @@ class SelectFragment:Fragment() {
 
 
         val indivisualButton:Button = view.findViewById(R.id.indivisual_print_btn)
-        val gramInformationEditText: EditText = view.findViewById(R.id.gram_information)
+        val gramInformationEditText1: EditText = view.findViewById(R.id.gram_information1)
+        val gramInformationEditText2: EditText = view.findViewById(R.id.gram_information2)
+        val gramInformationEditText3: EditText = view.findViewById(R.id.gram_information3)
+
 
         indivisualButton.setOnClickListener{
-            val gramInformation = gramInformationEditText.text.toString()
+            val gramInformation1 = gramInformationEditText1.text.toString()
+            val gramInformation2 = gramInformationEditText2.text.toString()
+            val gramInformation3 = gramInformationEditText3.text.toString()
 
             indivisualButton.text = "눌림"
-            println(gramInformation)
+            println(gramInformation1)
+            println(gramInformation2)
+            println(gramInformation3)
+
+
         }
 
 

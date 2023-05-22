@@ -21,8 +21,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import min.bo.recipe.app.R
@@ -30,6 +28,7 @@ import min.bo.recipe.app.model.Cereal
 import min.bo.recipe.app.ui.common.ViewModelFactory
 import java.util.jar.Manifest
 import androidx.core.app.ActivityCompat
+import com.google.firebase.database.*
 import min.bo.recipe.app.ml.Model
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
@@ -40,18 +39,25 @@ import kotlin.math.min
 
 class CartridgeFragment:Fragment() {
 
-    val CAMERA = arrayOf(android.Manifest.permission.CAMERA)
-    val STORAGE = arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE,
-        android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-    val CAMERA_CODE = 98
-    val STORAGE_CODE = 99
 
-    private lateinit var camera: Button
-    private lateinit var gallery: Button
+
+    private lateinit var camera1: Button
+    private lateinit var camera2: Button
+
+    private lateinit var camera3: Button
+
     private lateinit var imageView: ImageView
     private lateinit var result: TextView
     private lateinit var bitmap:Bitmap
+    private val database1 = Firebase.database("https://cereal-22a02-default-rtdb.asia-southeast1.firebasedatabase.app/")
+    private val myRef = database1.getReference("top_banners")
+    private val database = FirebaseDatabase.getInstance("https://cereal-22a02-default-rtdb.asia-southeast1.firebasedatabase.app/")
+    private val cerealsRef = database.getReference("cereals")
+
     private val imageSize = 32
+
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -84,7 +90,14 @@ class CartridgeFragment:Fragment() {
             addCereals(cerealsRef)
 */
 
-        camera = view.findViewById(R.id.button)
+
+
+
+
+        camera1 = view.findViewById(R.id.button1)
+        camera2 = view.findViewById(R.id.button2)
+        camera3 = view.findViewById(R.id.button3)
+
         result = view.findViewById(R.id.result)
         imageView = view.findViewById(R.id.imageView)
 
@@ -92,15 +105,25 @@ class CartridgeFragment:Fragment() {
 
 
 
-        camera.setOnClickListener {
+        camera1.setOnClickListener {
            val intent:Intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            activityResult.launch(intent)
+            activityResult1.launch(intent)
         }
 
 
+        camera2.setOnClickListener {
+            val intent:Intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            activityResult2.launch(intent)
+        }
+
+        camera3.setOnClickListener {
+            val intent:Intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            activityResult3.launch(intent)
+        }
+
     }
 
-    private fun classifyImage(image: Bitmap) {
+    private fun classifyImage(image: Bitmap, index:Int) {
         val model = Model.newInstance(requireContext())
 
 // Creates inputs for reference.
@@ -140,8 +163,15 @@ class CartridgeFragment:Fragment() {
                 maxPos = i
             }
         }
-        val classes = arrayOf("Apple", "Banana", "Orange")
+        //val classes = arrayOf("Apple", "Banana", "Orange")
+        val classes = arrayOf("1번시리얼","2번시리얼","3번시리얼")
+
         result.text = classes[maxPos]
+
+
+        change_information(cerealsRef,myRef,classes[maxPos],index)
+
+
 
 
 // Releases model resources if no longer used.
@@ -150,7 +180,7 @@ class CartridgeFragment:Fragment() {
 
 
 
-    private val activityResult:ActivityResultLauncher<Intent> =registerForActivityResult(
+    private val activityResult1:ActivityResultLauncher<Intent> =registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()){
         if (it.resultCode == Activity.RESULT_OK) {
             val extras = it.data!!.extras
@@ -161,10 +191,40 @@ class CartridgeFragment:Fragment() {
             imageView.setImageBitmap(thumbnail)
 
             val scaledImage = Bitmap.createScaledBitmap(thumbnail, imageSize, imageSize, false)
-            classifyImage(scaledImage)
+            classifyImage(scaledImage,1)
         }
     }
 
+
+    private val activityResult2:ActivityResultLauncher<Intent> =registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()){
+        if (it.resultCode == Activity.RESULT_OK) {
+            val extras = it.data!!.extras
+
+            val image = extras?.get("data") as Bitmap
+            val dimension = min(image?.width ?: 0, image?.height ?: 0)
+            val thumbnail = ThumbnailUtils.extractThumbnail(image, dimension, dimension)
+            imageView.setImageBitmap(thumbnail)
+
+            val scaledImage = Bitmap.createScaledBitmap(thumbnail, imageSize, imageSize, false)
+            classifyImage(scaledImage,2)
+        }
+    }
+
+    private val activityResult3:ActivityResultLauncher<Intent> =registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()){
+        if (it.resultCode == Activity.RESULT_OK) {
+            val extras = it.data!!.extras
+
+            val image = extras?.get("data") as Bitmap
+            val dimension = min(image?.width ?: 0, image?.height ?: 0)
+            val thumbnail = ThumbnailUtils.extractThumbnail(image, dimension, dimension)
+            imageView.setImageBitmap(thumbnail)
+
+            val scaledImage = Bitmap.createScaledBitmap(thumbnail, imageSize, imageSize, false)
+            classifyImage(scaledImage,3)
+        }
+    }
 
 
 }
@@ -181,7 +241,7 @@ class CartridgeFragment:Fragment() {
 
         cerealsRef.child("1").setValue(cereal1)
     }
-
+/*
     private fun change_information(
         cerealsRef: DatabaseReference,
         myRef: DatabaseReference
@@ -196,4 +256,36 @@ class CartridgeFragment:Fragment() {
             }
         }
     }
+*/
 
+
+private fun change_information(
+    cerealsRef: DatabaseReference,
+    myRef: DatabaseReference,
+    temp:String,
+    index:Int
+) {
+
+    cerealsRef.orderByChild("name").equalTo(temp).addListenerForSingleValueEvent(object :
+        ValueEventListener {
+        override fun onDataChange(dataSnapshot: DataSnapshot) {
+            for (childSnapshot in dataSnapshot.children) {
+                val cerealIndex = childSnapshot.key // Get the cereal index
+                val brandname = childSnapshot.child("name").value as? String
+                val information = childSnapshot.child("information").value as? String
+                if (information != null) {
+                    myRef.child((index-1).toString()).child("product_detail").child("brand_name").setValue(brandname)
+                    myRef.child((index-1).toString()).child("product_detail").child("information").setValue(information)
+
+                    println(information)
+                } else {
+                    println("Failed to read cereal information for index: $cerealIndex")
+                }
+            }
+        }
+
+        override fun onCancelled(databaseError: DatabaseError) {
+            println("Failed to read cereals")
+        }
+    })
+}

@@ -21,17 +21,51 @@
     -->
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:id="@+id/button"
-        android:text="Take Picture"
+        android:id="@+id/button1"
+        android:text="탄수화물"
+        android:textAllCaps="false"
+        android:textSize="21sp"
+        android:textStyle="bold"
+        android:layout_toLeftOf="@id/button2"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="20dp"
+
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/button2"
+        android:text="단백질"
         android:textAllCaps="false"
         android:textSize="21sp"
         android:textStyle="bold"
         android:layout_alignParentBottom="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="10dp"
 
-    />
+
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/button3"
+        android:text="지방"
+        android:textAllCaps="false"
+        android:textSize="21sp"
+        android:textStyle="bold"
+        android:layout_toRightOf="@id/button2"
+
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="20dp"
+
+        />
 
     <ImageView
         android:layout_width="370sp"
