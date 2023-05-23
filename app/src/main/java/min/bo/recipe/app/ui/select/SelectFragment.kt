@@ -1,9 +1,12 @@
 package min.bo.recipe.app.ui.select
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Button
@@ -22,11 +25,13 @@ import com.google.firebase.ktx.Firebase
 import min.bo.recipe.app.R
 import min.bo.recipe.app.databinding.FragmentSelectBinding
 import min.bo.recipe.app.ui.common.ViewModelFactory
+import kotlin.concurrent.thread
 
 class SelectFragment:Fragment() {
 
     private val viewModel : SelectViewModel by viewModels{ ViewModelFactory(requireContext()) }
     private lateinit var binding:FragmentSelectBinding
+    private lateinit var webView: WebView
 
     val database1 = Firebase.database("https://cereal-22a02-default-rtdb.asia-southeast1.firebasedatabase.app/")
     val myRef = database1.getReference("top_banners")
@@ -112,22 +117,36 @@ class SelectFragment:Fragment() {
             println(gramInformation2)
             println(gramInformation3)
 
-            /*
-            val webView = view.findViewById<WebView>(R.id.webView)
+
+
+
+            webView = WebView(requireContext())
+
             webView.settings.javaScriptEnabled =true
+
+            webView.settings.cacheMode = WebSettings.LOAD_NO_CACHE
+
             webView.webViewClient = WebViewClient()
-            webView.loadUrl("http://naver.com")
-*/
-
-        }
-
-
-
-
+            webView.loadUrl("http://192.168.0.125/page1?salt=3&sugar=3&blackpepper=3")
 
 
 
         }
+
+
+
+
+
+
+
+        }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // Ensure proper cleanup of the WebView
+        webView?.destroy()
+
+    }
 
     private fun setToolBar() {
         viewModel.title.observe(viewLifecycleOwner, { title ->

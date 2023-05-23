@@ -4,14 +4,86 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:contentInsetStart="0dp"
+            android:background="@color/white">
+
+            <TextView
+                android:id="@+id/toolbar_select_title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="시리얼 전체 출력"
+                android:paddingTop="32dp"
+                android:paddingBottom="24dp"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/black" />
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+
     <TextView
+        android:id="@+id/body_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="기초대사량 계산을 위한 정보"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:text="시리얼 전체 출력"/>
+        android:layout_marginTop="80dp"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        />
+
+    <TextView
+        android:id="@+id/person_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="키"
+        app:layout_constraintTop_toBottomOf="@id/body_title"
+        app:layout_constraintStart_toStartOf="@id/body_title"
+
+        />
+
+    <RadioGroup
+        android:id="@+id/genderRadioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/body_title"
+        app:layout_constraintEnd_toEndOf="@id/body_title"
+        >
+
+        <RadioButton
+            android:id="@+id/maleRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="남성" />
+
+        <RadioButton
+            android:id="@+id/femaleRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="여성" />
+
+
+    </RadioGroup>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
