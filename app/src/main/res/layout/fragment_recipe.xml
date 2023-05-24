@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
 
     <com.google.android.material.appbar.AppBarLayout
@@ -56,18 +57,84 @@
         android:id="@+id/person_height"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="키"
+        android:text="키(cm)"
         app:layout_constraintTop_toBottomOf="@id/body_title"
         app:layout_constraintStart_toStartOf="@id/body_title"
+        android:layout_marginTop="50dp"
+        />
+
+
+    <EditText
+        android:layout_marginTop="30dp"
+        android:id="@+id/height_information"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/body_title"
+        app:layout_constraintStart_toEndOf="@id/person_height"
+        android:textSize="20sp"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginLeft="10dp"
 
         />
 
+
+    <TextView
+        android:id="@+id/person_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="몸무게(kg)"
+        app:layout_constraintTop_toBottomOf="@id/body_title"
+        app:layout_constraintStart_toEndOf="@id/height_information"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="10dp"
+        />
+
+
+    <EditText
+        android:layout_marginTop="30dp"
+        android:id="@+id/weight_information"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/body_title"
+        app:layout_constraintStart_toEndOf="@id/person_weight"
+        android:textSize="20sp"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginLeft="10dp"
+
+        />
+
+
+    <TextView
+        android:id="@+id/person_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="나이(만)"
+        app:layout_constraintTop_toBottomOf="@id/person_height"
+        app:layout_constraintStart_toStartOf="@id/body_title"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="60dp"
+        />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:spinnerMode="dropdown"
+        app:layout_constraintTop_toBottomOf="@id/weight_information"
+        app:layout_constraintStart_toEndOf="@id/person_age"
+        android:layout_marginLeft="20dp"
+        />
+
     <RadioGroup
+        android:layout_marginTop="30dp"
         android:id="@+id/genderRadioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/body_title"
         app:layout_constraintEnd_toEndOf="@id/body_title"
+        app:layout_constraintStart_toEndOf="@id/weight_information"
+        android:layout_marginLeft="20dp"
         >
 
         <RadioButton
@@ -82,8 +149,80 @@
             android:layout_height="wrap_content"
             android:text="여성" />
 
+    </RadioGroup>
+
+
+    <RadioGroup
+        android:layout_marginTop="30dp"
+        android:id="@+id/purposeRadioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/person_age"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="20dp"
+        android:orientation="horizontal"
+        >
+
+        <RadioButton
+            android:id="@+id/NormalRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="일반" />
+
+        <RadioButton
+            android:id="@+id/BulkRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="벌크업" />
+
+        <RadioButton
+            android:id="@+id/DietRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="다이어트" />
 
     </RadioGroup>
 
+
+
+
+    <TextView
+        android:id="@+id/metabolic_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="정보 입력 후 당신의 기초대사량에 근거한 시리얼이 출력됩니다."
+        app:layout_constraintBottom_toTopOf="@id/print_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="13sp"
+        app:layout_constraintTop_toBottomOf="@id/purposeRadioGroup"
+        />
+
+
+    <TextView
+        android:id="@+id/metabolic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/metabolic_title"
+        app:layout_constraintBottom_toTopOf="@id/print_button"
+        android:textColor="@color/red"
+        tools:text="기초대사량"
+
+
+        />
+
+    <Button
+        android:id="@+id/print_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/metabolic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="30dp"
+        android:text="정보 입력 후 클릭"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

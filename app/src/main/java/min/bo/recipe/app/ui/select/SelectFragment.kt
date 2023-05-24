@@ -144,8 +144,9 @@ class SelectFragment:Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         // Ensure proper cleanup of the WebView
-        webView?.destroy()
-
+        if (::webView.isInitialized) {
+            webView.destroy()
+        }
     }
 
     private fun setToolBar() {

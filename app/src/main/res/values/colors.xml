@@ -11,4 +11,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="green_100">#008858</color>
 
+    <color name="red">#FF0000</color>
+
+
 </resources>
