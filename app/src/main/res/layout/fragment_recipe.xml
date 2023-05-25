@@ -48,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@id/appBarLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="30dp"
         android:textStyle="bold"
         android:textSize="24sp"
         />
@@ -192,11 +192,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="정보 입력 후 당신의 기초대사량에 근거한 시리얼이 출력됩니다."
-        app:layout_constraintBottom_toTopOf="@id/print_button"
+        app:layout_constraintBottom_toTopOf="@id/metabolic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:textSize="13sp"
         app:layout_constraintTop_toBottomOf="@id/purposeRadioGroup"
+        android:layout_marginTop="30dp"
         />
 
 
@@ -207,10 +208,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/metabolic_title"
-        app:layout_constraintBottom_toTopOf="@id/print_button"
         android:textColor="@color/red"
         tools:text="기초대사량"
+        android:layout_marginTop="30dp"
 
+
+        />
+
+    <TextView
+        android:id="@+id/cereals_kcal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/metabolic"
+        android:textColor="@color/black"
+        tools:text="칼로리"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+
+
+        />
+
+    <TextView
+        android:id="@+id/cereals_gram"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cereals_kcal"
+        app:layout_constraintBottom_toTopOf="@id/print_button"
+        android:textColor="@color/black"
+        tools:text="시리얼 그람수"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
 
         />
 
@@ -218,11 +249,12 @@
         android:id="@+id/print_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/metabolic"
+        app:layout_constraintTop_toBottomOf="@id/cereals_gram"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="30dp"
         android:text="정보 입력 후 클릭"
+        app:layout_goneMarginTop="30dp"
+        android:layout_marginTop="20dp"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,6 +12,7 @@
       "product_detail": {
         "brand_name":"켈로그",
         "information": "100g당 탄수화물 20g",
+        "kcal" : "0",
         "product_id": "cereal1"
       }
     },
@@ -25,6 +26,7 @@
       "product_detail": {
         "brand_name":"마이프로틴",
         "information": "100g당 단백질 20g",
+        "kcal" : "0",
         "product_id": "cereal2"
       }
     },
@@ -37,6 +39,7 @@
       "product_detail": {
         "brand_name":"견과류",
         "information": "100g당 지방 20g",
+        "kcal" : "0",
         "product_id": "cereal3"
       }
     }
@@ -44,18 +47,21 @@
 
   "cereals": [
     {
-      "name": "1번시리얼",
-      "information" : "100g당 탄수 10g"
+      "name": "듀오링",
+      "information" : "100g당 탄수화물 79g, 단백질 6g, 지방 8g",
+      "kcal" : "4.6"
     },
 
     {
-      "name": "2번시리얼",
-      "information" : "50g당 탄수 10g"
+      "name": "오 그래놀라",
+      "information" : "100g당 탄수화물 64g, 단백질 19g, 지방 14g",
+      "kcal" : "4.6"
     },
 
     {
-      "name": "3번시리얼",
-      "information" : "25g당 탄수 10g"
+      "name": "코코 그래놀라",
+      "information" : "100g당 탄수화물 83g, 단백질 3g, 지방 7g",
+      "kcal" : "4.1"
     }
 
   ]

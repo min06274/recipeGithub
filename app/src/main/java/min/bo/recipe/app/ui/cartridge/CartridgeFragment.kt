@@ -273,10 +273,11 @@ private fun change_information(
                 val cerealIndex = childSnapshot.key // Get the cereal index
                 val brandname = childSnapshot.child("name").value as? String
                 val information = childSnapshot.child("information").value as? String
+                val kcal = childSnapshot.child("kcal").value
                 if (information != null) {
                     myRef.child((index-1).toString()).child("product_detail").child("brand_name").setValue(brandname)
                     myRef.child((index-1).toString()).child("product_detail").child("information").setValue(information)
-
+                    myRef.child((index-1).toString()).child("product_detail").child("kcal").setValue(kcal)
                     println(information)
                 } else {
                     println("Failed to read cereal information for index: $cerealIndex")

@@ -64,6 +64,7 @@ class SelectFragment:Fragment() {
         val gramInformationEditText3: EditText = view.findViewById(R.id.gram_information3)
 
 
+        //개별출력 text에 나오게
         val cereal1:TextView = view.findViewById(R.id.carbo)
         val cereal2:TextView = view.findViewById(R.id.protein)
         val cereal3:TextView = view.findViewById(R.id.fat)
