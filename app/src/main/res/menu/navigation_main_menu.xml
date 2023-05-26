@@ -20,4 +20,13 @@
         android:title="@string/label_select_icon"
 
         />
+
+
+
+    <item
+        android:id="@+id/navigation_list"
+        android:icon="@drawable/selector_select_icon"
+        android:title="List"
+
+        />
 </menu>

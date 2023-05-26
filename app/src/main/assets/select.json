@@ -49,19 +49,45 @@
     {
       "name": "듀오링",
       "information" : "100g당 탄수화물 79g, 단백질 6g, 지방 8g",
-      "kcal" : "4.6"
+      "kcal" : "4.6",
+      "img_url" : "https://github.com/min06274/recipeGithub/assets/63834998/d524461b-b943-4441-9b59-6a68abdd3027",
+      "id" : "1"
     },
 
     {
       "name": "오 그래놀라",
       "information" : "100g당 탄수화물 64g, 단백질 19g, 지방 14g",
-      "kcal" : "4.6"
+      "kcal" : "4.6",
+      "img_url" : "https://github.com/min06274/recipeGithub/assets/63834998/7f52d4c7-ba3c-4e7d-98a1-828b9350e1fd",
+      "id" : "2"
+
     },
 
     {
       "name": "코코 그래놀라",
       "information" : "100g당 탄수화물 83g, 단백질 3g, 지방 7g",
-      "kcal" : "4.1"
+      "kcal" : "4.1",
+      "img_url" : "https://github.com/min06274/recipeGithub/assets/63834998/35b58acf-bff6-459e-ad77-371ea0ffb4ee",
+      "id" : "3"
+
+    }
+
+  ],
+
+  "cereal_list": [
+
+    {
+      "cereal_image_url": "",
+      "name": "오 그래놀라",
+      "information" : "100g당 탄수화물 64g, 단백질 19g, 지방 14g",
+      "cereal_id": "cereal1"
+    },
+
+    {
+      "cereal_image_url": "",
+      "name": "코코 그래놀라",
+      "information" : "100g당 탄수화물 83g, 단백질 3g, 지방 7g",
+      "cereal_id": "cereal1"
     }
 
   ]

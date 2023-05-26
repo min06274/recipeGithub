@@ -113,10 +113,8 @@ class SelectFragment:Fragment() {
             val gramInformation2 = gramInformationEditText2.text.toString()
             val gramInformation3 = gramInformationEditText3.text.toString()
 
-            indivisualButton.text = "눌림"
-            println(gramInformation1)
-            println(gramInformation2)
-            println(gramInformation3)
+
+
 
 
 
@@ -128,7 +126,14 @@ class SelectFragment:Fragment() {
             webView.settings.cacheMode = WebSettings.LOAD_NO_CACHE
 
             webView.webViewClient = WebViewClient()
-            webView.loadUrl("http://192.168.0.125/page1?salt=3&sugar=3&blackpepper=3")
+            webView.loadUrl("http://192.168.0.125/page1?salt="+gramInformation1+"&sugar="+gramInformation2+"&blackpepper="+gramInformation3)
+
+
+
+
+
+            indivisualButton.text = "출력시작"
+
 
 
 

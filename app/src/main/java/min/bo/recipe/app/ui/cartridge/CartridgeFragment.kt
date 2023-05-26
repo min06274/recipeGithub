@@ -1,14 +1,11 @@
 package min.bo.recipe.app.ui.cartridge
 
 import android.app.Activity
-import android.app.Activity.RESULT_OK
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.media.ThumbnailUtils
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,19 +14,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import min.bo.recipe.app.R
-import min.bo.recipe.app.model.Cereal
-import min.bo.recipe.app.ui.common.ViewModelFactory
-import java.util.jar.Manifest
-import androidx.core.app.ActivityCompat
 import com.google.firebase.database.*
 import min.bo.recipe.app.ml.Model
+import min.bo.recipe.app.model.Cereal
+import min.bo.recipe.app.model.CerealData
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.nio.ByteBuffer
@@ -54,6 +46,8 @@ class CartridgeFragment:Fragment() {
     private val database = FirebaseDatabase.getInstance("https://cereal-22a02-default-rtdb.asia-southeast1.firebasedatabase.app/")
     private val cerealsRef = database.getReference("cereals")
 
+    private val database2 = FirebaseDatabase.getInstance("https://cereal-22a02-default-rtdb.asia-southeast1.firebasedatabase.app/")
+    private val cerealListRef = database2.getReference("cereal_list")
     private val imageSize = 180
 
 
@@ -100,6 +94,7 @@ class CartridgeFragment:Fragment() {
 
         result = view.findViewById(R.id.result)
         imageView = view.findViewById(R.id.imageView)
+
 
 
 
@@ -169,7 +164,7 @@ class CartridgeFragment:Fragment() {
         result.text = classes[maxPos]
 
 
-        change_information(cerealsRef,myRef,classes[maxPos],index)
+        change_information(cerealsRef,myRef,cerealListRef,classes[maxPos],index)
 
 
 
@@ -262,27 +257,115 @@ class CartridgeFragment:Fragment() {
 private fun change_information(
     cerealsRef: DatabaseReference,
     myRef: DatabaseReference,
+    cerealListRef: DatabaseReference,
     temp:String,
     index:Int
 ) {
 
     cerealsRef.orderByChild("name").equalTo(temp).addListenerForSingleValueEvent(object :
         ValueEventListener {
+
         override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+            val childSnapshot = dataSnapshot.children.firstOrNull()
+
+            childSnapshot?.let {
+                val cerealIndex = it.key // Get the cereal index
+                val brandname = it.child("name").value as? String
+                val information = it.child("information").value as? String
+                val kcal = it.child("kcal").value
+                val ceimage = it.child("img_url").value as? String
+                val ceid = it.child("id").value as? String
+
+                if (brandname != null && information != null && ceimage != null && ceid != null) {
+
+                    myRef.child((index.toInt() - 1).toString()).child("product_detail").child("brand_name")
+                        .setValue(brandname)
+                    myRef.child((index.toInt() - 1).toString()).child("product_detail").child("information")
+                        .setValue(information)
+                    myRef.child((index.toInt() - 1).toString()).child("product_detail").child("kcal")
+                        .setValue(kcal)
+
+                    val newCereal = CerealData(
+                        cereal_image_url = ceimage,
+                        name = brandname,
+                        information = information,
+                        cereal_id = ceid
+                    )
+
+                    cerealListRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+                            var isDuplicate = false
+
+                            for (childSnapshot in dataSnapshot.children) {
+                                val name = childSnapshot.child("name").value as? String
+                                if (name == temp) {
+                                    isDuplicate = true
+                                    break
+                                }
+                            }
+
+                            if (!isDuplicate) {
+                                val count = dataSnapshot.childrenCount
+                                val newCerealRef = cerealListRef.child((count).toString())
+                                newCerealRef.setValue(newCereal)
+                                println(count)
+                            }
+                            else {
+                                println("Cereal already exists with the name: $temp")
+                            }
+
+
+                        }
+
+                        override fun onCancelled(databaseError: DatabaseError) {
+                            println("Failed to read cereals")
+                        }
+                    })
+
+
+                    println(information)
+                } else {
+                    println("Failed to read cereal information for index: $cerealIndex")
+                }
+            } ?: run {
+                println("No cereal found matching the condition")
+            }
+
+            /*
             for (childSnapshot in dataSnapshot.children) {
                 val cerealIndex = childSnapshot.key // Get the cereal index
-                val brandname = childSnapshot.child("name").value as? String
-                val information = childSnapshot.child("information").value as? String
+                val brandname = childSnapshot.child("name").value as String
+                val information = childSnapshot.child("information").value as String
                 val kcal = childSnapshot.child("kcal").value
+                val ceimage = childSnapshot.child("img_url").value as String
+                val ceid = childSnapshot.child("id").value as String
+
+                val New_Cereal = CerealData(
+                    cerealImgUrl = ceimage,
+                    name = brandname,
+                    information = information,
+                    cerealId = ceid
+
+                )
+
+
+                val add_idx = dataSnapshot
+                val newCerealRef = cerealListRef.child("3")
+
+
                 if (information != null) {
                     myRef.child((index-1).toString()).child("product_detail").child("brand_name").setValue(brandname)
                     myRef.child((index-1).toString()).child("product_detail").child("information").setValue(information)
                     myRef.child((index-1).toString()).child("product_detail").child("kcal").setValue(kcal)
+
+                    newCerealRef.setValue(New_Cereal)
                     println(information)
                 } else {
                     println("Failed to read cereal information for index: $cerealIndex")
                 }
             }
+            */
         }
 
         override fun onCancelled(databaseError: DatabaseError) {

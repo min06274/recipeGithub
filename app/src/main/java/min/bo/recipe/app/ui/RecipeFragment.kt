@@ -209,7 +209,6 @@ class RecipeFragment: Fragment() {
                 else if(total_kcal < result)
                 {
 
-
                     while(total_kcal<result)
                     {
                         protein_gram+=3
@@ -217,6 +216,7 @@ class RecipeFragment: Fragment() {
                         fat_gram +=1
                         total_kcal = carbo_gram*carbo_gram_kcal+protein_gram*protein_gram_kcal+fat_gram*fat_gram_kcal
                     }
+
                 }
 
                 gramText.text = "탄수 :" +carbo_gram.toString() +" 단백질 : " +protein_gram.toString() + " 지방 : " +fat_gram.toString()
