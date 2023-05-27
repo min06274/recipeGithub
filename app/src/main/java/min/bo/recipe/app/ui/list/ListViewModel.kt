@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import min.bo.recipe.app.model.CerealData
 import min.bo.recipe.app.repository.ListRepository
+import min.bo.recipe.app.ui.common.Event
 
 class ListViewModel(
     private val listRepository:ListRepository
@@ -17,8 +18,15 @@ class ListViewModel(
     val items:LiveData<List<CerealData>> = _items
 
 
+    private val _openCerealEvent = MutableLiveData<Event<CerealData>>()
+    val openCerealEvent:LiveData<Event<CerealData>> = _openCerealEvent
+
     init{
         loadList()
+    }
+
+    fun openCerealDetail(Cereal:CerealData){
+        _openCerealEvent.value = Event(Cereal)
     }
 
     private fun loadList(){

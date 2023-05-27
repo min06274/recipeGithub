@@ -19,5 +19,14 @@
     <fragment
         android:id="@+id/navigation_list"
         android:name="min.bo.recipe.app.ui.list.ListFragment"
-        android:label="ListFragment" />
+        android:label="ListFragment" >
+        <action
+            android:id="@+id/action_list_to_cereal_detail"
+            app:destination="@id/navigation_cereal_detail" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_cereal_detail"
+        android:name="min.bo.recipe.app.ui.cerealdetail.CerealDetailFragment"
+        android:label="CerealDetailFragment" />
 </navigation>

@@ -1,16 +1,19 @@
 package min.bo.recipe.app.ui.list
 
 import android.view.LayoutInflater
+import android.view.View
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import min.bo.recipe.app.databinding.ItemListBinding
 import min.bo.recipe.app.model.CerealData
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import min.bo.recipe.app.Banner
+import min.bo.recipe.app.R
 import min.bo.recipe.app.databinding.ItemSelectBannerBinding
 
-class CerealListAdapter: ListAdapter<CerealData,  CerealListAdapter.ListViewHolder>(ListDiffCallback()) {
+class CerealListAdapter(private val viewModel:ListViewModel): ListAdapter<CerealData,  CerealListAdapter.ListViewHolder>(ListDiffCallback()) {
 
 
 
@@ -23,9 +26,10 @@ class CerealListAdapter: ListAdapter<CerealData,  CerealListAdapter.ListViewHold
         holder.bind(getItem(position))
     }
 
-    class ListViewHolder(private val binding: ItemListBinding):RecyclerView.ViewHolder(binding.root){
+    inner class ListViewHolder(private val binding: ItemListBinding):RecyclerView.ViewHolder(binding.root){
 
         fun bind(cereal:CerealData){
+            binding.viewModel = viewModel
             binding.list = cereal
             binding.executePendingBindings()
         }
