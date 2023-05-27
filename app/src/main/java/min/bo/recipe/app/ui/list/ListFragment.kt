@@ -13,8 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import min.bo.recipe.app.R
-import min.bo.recipe.app.common.KEY_CEREAL_ID
-import min.bo.recipe.app.common.KEY_CEREAL_NAME
+import min.bo.recipe.app.common.*
 import min.bo.recipe.app.databinding.FragmentListBinding
 import min.bo.recipe.app.model.CerealData
 import min.bo.recipe.app.ui.common.EventObserver
@@ -49,17 +48,20 @@ class ListFragment: Fragment() {
         }
 
         viewModel.openCerealEvent.observe(viewLifecycleOwner, EventObserver{
-            openCerealDetail(it.cereal_id,it.name)
+            openCerealDetail(it.cereal_id,it.name,it.cereal_image_url,it.information,it.cereal_kcal)
 
         })
 
     }
 
 
-    private fun openCerealDetail(cerealId:String,cerealName:String){
+    private fun openCerealDetail(cerealId:String,cerealName:String,cerealImage:String,cerealInformation:String,cerealKcal:String){
         findNavController().navigate(R.id.action_list_to_cereal_detail, bundleOf(
                 KEY_CEREAL_ID to cerealId,
-                KEY_CEREAL_NAME to cerealName
+                KEY_CEREAL_NAME to cerealName,
+                KEY_CEREAL_IMAGE to cerealImage,
+                KEY_CEREAL_INFORMATION to cerealInformation,
+                KEY_CEREAL_KCAL to cerealKcal
                 ))
     }
 }

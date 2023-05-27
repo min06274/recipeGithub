@@ -12,5 +12,6 @@ data class Banner(
 data class ProductDetail(
     @SerializedName("brand_name") val brandName:String,
     val information:String,
-    @SerializedName("product_id") val productId:String
+    @SerializedName("product_id") val productId:String,
+    val kcal:String
 )

@@ -77,17 +77,20 @@
   "cereal_list": [
 
     {
-      "cereal_image_url": "",
+      "cereal_image_url": "https://github.com/min06274/recipeGithub/assets/63834998/7f52d4c7-ba3c-4e7d-98a1-828b9350e1fd",
       "name": "오 그래놀라",
       "information" : "100g당 탄수화물 64g, 단백질 19g, 지방 14g",
-      "cereal_id": "cereal1"
+      "cereal_id": "1",
+      "cereal_kcal" : ""
     },
 
     {
-      "cereal_image_url": "",
+      "cereal_image_url": "https://github.com/min06274/recipeGithub/assets/63834998/35b58acf-bff6-459e-ad77-371ea0ffb4ee",
       "name": "코코 그래놀라",
       "information" : "100g당 탄수화물 83g, 단백질 3g, 지방 7g",
-      "cereal_id": "cereal1"
+      "cereal_id": "0",
+      "cereal_kcal" : ""
+
     }
 
   ]

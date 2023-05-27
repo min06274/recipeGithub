@@ -67,30 +67,9 @@ class CartridgeFragment:Fragment() {
 
 
 
-/*
-        val database1 = Firebase.database("https://cereal-22a02-default-rtdb.asia-southeast1.firebasedatabase.app/")
-        val myRef = database1.getReference("top_banners")
-
-
-
-        val database = FirebaseDatabase.getInstance("https://cereal-22a02-default-rtdb.asia-southeast1.firebasedatabase.app/")
-        val cerealsRef = database.getReference("cereals")
-
-        val jsonButton: Button = view.findViewById(R.id.json_btn)
-
-        jsonButton.setOnClickListener {
-            //change_information(cerealsRef, myRef)
-
-            addCereals(cerealsRef)
-*/
-
-
-
-
 
         camera1 = view.findViewById(R.id.button1)
-        camera2 = view.findViewById(R.id.button2)
-        camera3 = view.findViewById(R.id.button3)
+
 
         result = view.findViewById(R.id.result)
         imageView = view.findViewById(R.id.imageView)
@@ -102,23 +81,14 @@ class CartridgeFragment:Fragment() {
 
         camera1.setOnClickListener {
            val intent:Intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            activityResult1.launch(intent)
+            activityResult.launch(intent)
         }
 
 
-        camera2.setOnClickListener {
-            val intent:Intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            activityResult2.launch(intent)
-        }
-
-        camera3.setOnClickListener {
-            val intent:Intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            activityResult3.launch(intent)
-        }
 
     }
 
-    private fun classifyImage(image: Bitmap, index:Int) {
+    private fun classifyImage(image: Bitmap) {
         val model = Model.newInstance(requireContext())
 
 // Creates inputs for reference.
@@ -164,7 +134,7 @@ class CartridgeFragment:Fragment() {
         result.text = classes[maxPos]
 
 
-        change_information(cerealsRef,myRef,cerealListRef,classes[maxPos],index)
+        change_information(cerealsRef,cerealListRef,classes[maxPos])
 
 
 
@@ -175,7 +145,7 @@ class CartridgeFragment:Fragment() {
 
 
 
-    private val activityResult1:ActivityResultLauncher<Intent> =registerForActivityResult(
+    private val activityResult:ActivityResultLauncher<Intent> =registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()){
         if (it.resultCode == Activity.RESULT_OK) {
             val extras = it.data!!.extras
@@ -186,40 +156,10 @@ class CartridgeFragment:Fragment() {
             imageView.setImageBitmap(thumbnail)
 
             val scaledImage = Bitmap.createScaledBitmap(thumbnail, imageSize, imageSize, false)
-            classifyImage(scaledImage,1)
+            classifyImage(scaledImage)
         }
     }
 
-
-    private val activityResult2:ActivityResultLauncher<Intent> =registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()){
-        if (it.resultCode == Activity.RESULT_OK) {
-            val extras = it.data!!.extras
-
-            val image = extras?.get("data") as Bitmap
-            val dimension = min(image?.width ?: 0, image?.height ?: 0)
-            val thumbnail = ThumbnailUtils.extractThumbnail(image, dimension, dimension)
-            imageView.setImageBitmap(thumbnail)
-
-            val scaledImage = Bitmap.createScaledBitmap(thumbnail, imageSize, imageSize, false)
-            classifyImage(scaledImage,2)
-        }
-    }
-
-    private val activityResult3:ActivityResultLauncher<Intent> =registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()){
-        if (it.resultCode == Activity.RESULT_OK) {
-            val extras = it.data!!.extras
-
-            val image = extras?.get("data") as Bitmap
-            val dimension = min(image?.width ?: 0, image?.height ?: 0)
-            val thumbnail = ThumbnailUtils.extractThumbnail(image, dimension, dimension)
-            imageView.setImageBitmap(thumbnail)
-
-            val scaledImage = Bitmap.createScaledBitmap(thumbnail, imageSize, imageSize, false)
-            classifyImage(scaledImage,3)
-        }
-    }
 
 
 }
@@ -227,39 +167,10 @@ class CartridgeFragment:Fragment() {
 
 
 
-
-    private fun addCereals(cerealsRef: DatabaseReference){
-        val cereal1 = Cereal(
-            "1번시리얼",
-            "30g당 탄수 5g"
-        )
-
-        cerealsRef.child("1").setValue(cereal1)
-    }
-/*
-    private fun change_information(
-        cerealsRef: DatabaseReference,
-        myRef: DatabaseReference
-    ) {
-        cerealsRef.child("0").child("information").get().addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                val information = task.result?.value as? String
-                myRef.child("0").child("product_detail").child("information").setValue(information)
-                println(information)
-            } else {
-                println("Failed to read cereal information")
-            }
-        }
-    }
-*/
-
-
 private fun change_information(
     cerealsRef: DatabaseReference,
-    myRef: DatabaseReference,
     cerealListRef: DatabaseReference,
     temp:String,
-    index:Int
 ) {
 
     cerealsRef.orderByChild("name").equalTo(temp).addListenerForSingleValueEvent(object :
@@ -273,28 +184,18 @@ private fun change_information(
                 val cerealIndex = it.key // Get the cereal index
                 val brandname = it.child("name").value as? String
                 val information = it.child("information").value as? String
-                val kcal = it.child("kcal").value
+                val kcal = it.child("kcal").value as? String
                 val ceimage = it.child("img_url").value as? String
                 val ceid = it.child("id").value as? String
 
-                if (brandname != null && information != null && ceimage != null && ceid != null) {
+                if (brandname != null && information != null && ceimage != null && ceid != null && kcal != null) {
 
-                    myRef.child((index.toInt() - 1).toString()).child("product_detail").child("brand_name")
-                        .setValue(brandname)
-                    myRef.child((index.toInt() - 1).toString()).child("product_detail").child("information")
-                        .setValue(information)
-                    myRef.child((index.toInt() - 1).toString()).child("product_detail").child("kcal")
-                        .setValue(kcal)
 
-                    val newCereal = CerealData(
-                        cereal_image_url = ceimage,
-                        name = brandname,
-                        information = information,
-                        cereal_id = ceid
-                    )
 
                     cerealListRef.addListenerForSingleValueEvent(object : ValueEventListener {
                         override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+
                             var isDuplicate = false
 
                             for (childSnapshot in dataSnapshot.children) {
@@ -308,6 +209,13 @@ private fun change_information(
                             if (!isDuplicate) {
                                 val count = dataSnapshot.childrenCount
                                 val newCerealRef = cerealListRef.child((count).toString())
+                                val newCereal = CerealData(
+                                    cereal_image_url = ceimage,
+                                    name = brandname,
+                                    information = information,
+                                    cereal_id = count.toString(),
+                                    cereal_kcal = kcal
+                                )
                                 newCerealRef.setValue(newCereal)
                                 println(count)
                             }
@@ -332,40 +240,6 @@ private fun change_information(
                 println("No cereal found matching the condition")
             }
 
-            /*
-            for (childSnapshot in dataSnapshot.children) {
-                val cerealIndex = childSnapshot.key // Get the cereal index
-                val brandname = childSnapshot.child("name").value as String
-                val information = childSnapshot.child("information").value as String
-                val kcal = childSnapshot.child("kcal").value
-                val ceimage = childSnapshot.child("img_url").value as String
-                val ceid = childSnapshot.child("id").value as String
-
-                val New_Cereal = CerealData(
-                    cerealImgUrl = ceimage,
-                    name = brandname,
-                    information = information,
-                    cerealId = ceid
-
-                )
-
-
-                val add_idx = dataSnapshot
-                val newCerealRef = cerealListRef.child("3")
-
-
-                if (information != null) {
-                    myRef.child((index-1).toString()).child("product_detail").child("brand_name").setValue(brandname)
-                    myRef.child((index-1).toString()).child("product_detail").child("information").setValue(information)
-                    myRef.child((index-1).toString()).child("product_detail").child("kcal").setValue(kcal)
-
-                    newCerealRef.setValue(New_Cereal)
-                    println(information)
-                } else {
-                    println("Failed to read cereal information for index: $cerealIndex")
-                }
-            }
-            */
         }
 
         override fun onCancelled(databaseError: DatabaseError) {

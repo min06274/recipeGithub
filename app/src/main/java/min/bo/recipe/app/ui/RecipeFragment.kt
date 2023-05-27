@@ -221,6 +221,7 @@ class RecipeFragment: Fragment() {
 
                 gramText.text = "탄수 :" +carbo_gram.toString() +" 단백질 : " +protein_gram.toString() + " 지방 : " +fat_gram.toString()
 
+                /*
                 webView = WebView(requireContext())
 
                 webView.settings.javaScriptEnabled =true
@@ -229,7 +230,7 @@ class RecipeFragment: Fragment() {
 
                 webView.webViewClient = WebViewClient()
                 webView.loadUrl("http://192.168.0.125/page1?salt="+carbo_gram.toString()+"&sugar="+protein_gram.toString()+"&blackpepper="+fat_gram.toString())
-
+*/
             }, 3000)
 
         }

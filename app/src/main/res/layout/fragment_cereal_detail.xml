@@ -21,5 +21,102 @@
            app:navigationIcon="@drawable/ic_gnb_back"
 />
 
+        <ImageView
+            android:id="@+id/cereal_deatil_img"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_margin="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@mipmap/ic_launcher_round"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_cereal_detail"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/cereal_deatil_img"
+            android:text="시리얼 영양정보"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="30dp"
+
+            />
+
+        <TextView
+            android:id="@+id/cereal_detail_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/cereal_deatil_img"
+            android:text="시리얼 영양정보"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="30dp"
+
+            />
+
+
+        <TextView
+            android:id="@+id/cereal_detail_information"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/cereal_detail_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="10dp"
+            android:text="ttt"
+            />
+
+
+        <TextView
+            android:id="@+id/cereal_detail_kcal_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/cereal_detail_information"
+            app:layout_constraintStart_toStartOf="@id/cereal_detail_title"
+            android:layout_marginTop="10dp"
+            android:text="1g당 칼로리"
+            />
+
+        <TextView
+            android:id="@+id/cereal_detail_kcal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/cereal_detail_information"
+            app:layout_constraintStart_toEndOf="@id/cereal_detail_kcal_title"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="ddd"
+            />
+
+        <Button
+            android:id="@+id/cereal_detail_carbo_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/cereal_detail_kcal"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="탄수에 추가"
+            />
+
+        <Button
+            android:id="@+id/cereal_detail_protein_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/cereal_detail_kcal"
+            app:layout_constraintEnd_toStartOf="@id/cereal_detail_fat_btn"
+            app:layout_constraintStart_toEndOf="@id/cereal_detail_carbo_btn"
+
+            android:text="단백질에 추가"
+            />
+
+        <Button
+            android:id="@+id/cereal_detail_fat_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/cereal_detail_kcal"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            android:text="지방에 추가"
+            />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
