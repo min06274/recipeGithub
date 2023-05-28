@@ -39,10 +39,24 @@
             app:layout_constraintStart_toEndOf="@id/cereal_img"
             app:layout_constraintTop_toTopOf="@id/cereal_img"
             android:text="@{list.name}"
-            app:layout_constraintBottom_toBottomOf="@id/cereal_img"
             android:layout_marginLeft="20dp" />
 
 
+
+
+        <TextView
+            android:id="@+id/cereal_spec"
+            android:layout_marginStart="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            isColor="@{list.cereal_spec}"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@id/cereal_title"
+            app:layout_constraintStart_toEndOf="@id/cereal_img"
+            android:text="@{list.cereal_spec}"
+            app:layout_constraintBottom_toBottomOf="@id/cereal_img"
+            android:layout_marginLeft="20dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

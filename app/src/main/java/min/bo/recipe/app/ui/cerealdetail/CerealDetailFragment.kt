@@ -1,5 +1,7 @@
 package min.bo.recipe.app.ui.cerealdetail
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -36,6 +38,7 @@ class CerealDetailFragment: Fragment() {
         val cerealImage = requireArguments().getString(KEY_CEREAL_IMAGE)
         val cerealInformation = requireArguments().getString(KEY_CEREAL_INFORMATION)
         val cerealKcal = requireArguments().getString(KEY_CEREAL_KCAL)
+        val cerealPurchase = requireArguments().getString(KEY_CEREAL_URL)
         binding.toolbarCerealDetail.title = cerealName
         binding.cerealDetailInformation.text = cerealInformation
         binding.cerealDetailKcal.text = cerealKcal
@@ -43,6 +46,13 @@ class CerealDetailFragment: Fragment() {
         Glide.with(requireContext())
             .load(cerealImage)
             .into(binding.cerealDeatilImg);
+
+        binding.cerealPurchaseBtn.setOnClickListener {
+            val webpage: Uri = Uri.parse(cerealPurchase)
+            val intent = Intent(Intent.ACTION_VIEW, webpage)
+                startActivity(intent)
+
+        }
 
         binding.cerealDetailCarboBtn.setOnClickListener{
             binding.cerealDetailCarboBtn.text="눌림"

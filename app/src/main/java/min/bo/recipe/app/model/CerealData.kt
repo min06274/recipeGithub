@@ -9,6 +9,8 @@ data class CerealData(
     val name:String,
     val information:String,
     val cereal_id:String,
-    val cereal_kcal:String
+    val cereal_kcal:String,
+    val cereal_spec:String,
+    val cereal_purchase_url:String
 
 )

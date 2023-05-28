@@ -129,7 +129,7 @@ class CartridgeFragment:Fragment() {
             }
         }
         //val classes = arrayOf("Apple", "Banana", "Orange")
-        val classes = arrayOf("듀오링","오 그래놀라","코코 그래놀라")
+        val classes = arrayOf("포스트 듀오링","마켓오 그래놀라 단백질 넛츠 카라멜","포스트 코코 그래놀라")
 
         result.text = classes[maxPos]
 
@@ -187,8 +187,9 @@ private fun change_information(
                 val kcal = it.child("kcal").value as? String
                 val ceimage = it.child("img_url").value as? String
                 val ceid = it.child("id").value as? String
-
-                if (brandname != null && information != null && ceimage != null && ceid != null && kcal != null) {
+                val spec = it.child("spec").value as? String
+                val purchase = it.child("purchase_url").value as? String
+                if (purchase != null && spec != null && brandname != null && information != null && ceimage != null && ceid != null && kcal != null) {
 
 
 
@@ -214,7 +215,9 @@ private fun change_information(
                                     name = brandname,
                                     information = information,
                                     cereal_id = count.toString(),
-                                    cereal_kcal = kcal
+                                    cereal_kcal = kcal,
+                                    cereal_spec = spec,
+                                    cereal_purchase_url = purchase
                                 )
                                 newCerealRef.setValue(newCereal)
                                 println(count)

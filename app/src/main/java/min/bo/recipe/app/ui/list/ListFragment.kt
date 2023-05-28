@@ -48,20 +48,21 @@ class ListFragment: Fragment() {
         }
 
         viewModel.openCerealEvent.observe(viewLifecycleOwner, EventObserver{
-            openCerealDetail(it.cereal_id,it.name,it.cereal_image_url,it.information,it.cereal_kcal)
+            openCerealDetail(it.cereal_id,it.name,it.cereal_image_url,it.information,it.cereal_kcal,it.cereal_purchase_url)
 
         })
 
     }
 
 
-    private fun openCerealDetail(cerealId:String,cerealName:String,cerealImage:String,cerealInformation:String,cerealKcal:String){
+    private fun openCerealDetail(cerealId:String,cerealName:String,cerealImage:String,cerealInformation:String,cerealKcal:String,cerealPurchase:String){
         findNavController().navigate(R.id.action_list_to_cereal_detail, bundleOf(
                 KEY_CEREAL_ID to cerealId,
                 KEY_CEREAL_NAME to cerealName,
                 KEY_CEREAL_IMAGE to cerealImage,
                 KEY_CEREAL_INFORMATION to cerealInformation,
-                KEY_CEREAL_KCAL to cerealKcal
+                KEY_CEREAL_KCAL to cerealKcal,
+                KEY_CEREAL_URL to cerealPurchase
                 ))
     }
 }

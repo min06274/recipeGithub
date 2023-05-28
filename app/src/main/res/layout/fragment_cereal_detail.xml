@@ -24,29 +24,30 @@
         <ImageView
             android:id="@+id/cereal_deatil_img"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="250dp"
             android:layout_margin="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@mipmap/ic_launcher_round"
             app:layout_constraintTop_toBottomOf="@id/toolbar_cereal_detail"
             />
 
-        <TextView
+        <Button
+            android:id="@+id/cereal_purchase_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/cereal_deatil_img"
-            android:text="시리얼 영양정보"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="30dp"
-
+            android:text="구매 링크로 연결"
             />
+
+
 
         <TextView
             android:id="@+id/cereal_detail_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/cereal_deatil_img"
+            app:layout_constraintTop_toBottomOf="@id/cereal_purchase_btn"
             android:text="시리얼 영양정보"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
