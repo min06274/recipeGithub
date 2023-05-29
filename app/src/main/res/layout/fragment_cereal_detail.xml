@@ -10,6 +10,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <Button
+            android:id="@+id/delete_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="삭제하기"
+            android:background="@color/red"
+            />
 
        <androidx.appcompat.widget.Toolbar
            android:id="@+id/toolbar_cereal_detail"
@@ -18,8 +27,9 @@
            app:layout_constraintEnd_toEndOf="parent"
            app:layout_constraintStart_toStartOf="parent"
            app:layout_constraintTop_toTopOf="parent"
-           app:navigationIcon="@drawable/ic_gnb_back"
-/>
+           app:navigationIcon="@drawable/ic_gnb_back"/>
+
+
 
         <ImageView
             android:id="@+id/cereal_deatil_img"
