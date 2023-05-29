@@ -16,6 +16,7 @@
 
 
         <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/select_appbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -75,6 +76,7 @@
                     app:tabBackground="@drawable/selector_viewpager_indicator" />
 
 
+<!--
 
                 <TextView
                     android:id="@+id/carbo"
@@ -155,12 +157,96 @@
 
                     />
 
+-->
+
+
+                <TableLayout
+                    android:id="@+id/cereal_table"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/viewpager_select_banner_indicator"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:background="@drawable/table_outside"
+                    >
+
+                    <TableRow>
+                        <TextView
+                            android:layout_marginLeft="5dp"
+
+                            android:textColor="@color/white"
+                            android:id="@+id/carbo"
+                            android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:text="마켓오 그래놀라 단백질 넛츠 카라멜"
+                            android:textStyle="bold"
+
+                            />
+
+                        <EditText
+                            android:textColor="@color/white"
+                            android:id="@+id/table_gram1"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:textAlignment="center"
+
+                            />
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:layout_marginLeft="5dp"
+
+                            android:textColor="@color/white"
+                            android:id="@+id/protein"
+                            android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:text="포스트 듀오링"
+                            android:textStyle="bold"
+                            />
+                        <EditText
+                            android:textColor="@color/white"
+                            android:id="@+id/table_gram2"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:textAlignment="center"
+
+                            />
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:layout_marginLeft="5dp"
+
+                            android:textColor="@color/white"
+                            android:id="@+id/fat"
+                            android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:text="포스트 듀오링"
+                            android:textStyle="bold"
+                            />
+                        <EditText
+                            android:textColor="@color/white"
+                            android:id="@+id/table_gram3"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:textAlignment="center"
+                            />
+                    </TableRow>
+
+
+
+                </TableLayout>
+
 
                 <Button
                     android:id="@+id/indivisual_print_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/gram_information2"
+                    app:layout_constraintTop_toBottomOf="@id/cereal_table"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     android:text="개별출력"

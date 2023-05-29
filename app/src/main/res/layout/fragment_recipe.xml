@@ -192,64 +192,101 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="정보 입력 후 당신의 기초대사량에 근거한 시리얼이 출력됩니다."
-        app:layout_constraintBottom_toTopOf="@id/metabolic"
+        app:layout_constraintBottom_toTopOf="@id/recipe_output_table"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:textSize="13sp"
         app:layout_constraintTop_toBottomOf="@id/purposeRadioGroup"
         android:layout_marginTop="15dp"
+        android:textStyle="bold"
         />
 
 
-    <TextView
-        android:id="@+id/metabolic"
-        android:layout_width="wrap_content"
+
+    <TableLayout
+        android:layout_marginTop="10dp"
+        android:id="@+id/recipe_output_table"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/metabolic_title"
-        android:textColor="@color/red"
-        tools:text="기초대사량"
-        android:layout_marginTop="15dp"
-
-
-        />
-
-    <TextView
-        android:id="@+id/cereals_kcal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/metabolic"
-        android:textColor="@color/black"
-        tools:text="칼로리"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
+        android:background="@drawable/table_outside"
+        >
+
+        <TableRow>
+            <TextView
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/white"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="기초대사량"
+                android:textStyle="bold"
+
+                />
+
+            <TextView
+                android:id="@+id/metabolic"
+                android:textColor="@color/white"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+
+                />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_marginLeft="5dp"
+
+                android:textColor="@color/white"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="제품 별 칼로리"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:id="@+id/cereals_kcal"
+                android:textColor="@color/white"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
 
 
-        />
+                />
+        </TableRow>
 
-    <TextView
-        android:id="@+id/cereals_gram"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cereals_kcal"
-        app:layout_constraintBottom_toTopOf="@id/print_button"
-        android:textColor="@color/black"
-        tools:text="시리얼 그람수"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
+        <TableRow>
+            <TextView
+                android:layout_marginLeft="5dp"
 
-        />
+                android:textColor="@color/white"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="제품 별 출력 gram"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:id="@+id/cereals_gram"
+                android:textColor="@color/white"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                />
+        </TableRow>
+
+
+
+    </TableLayout>
+
+
+
 
     <Button
         android:id="@+id/print_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/cereals_gram"
+        app:layout_constraintTop_toBottomOf="@id/recipe_output_table"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:text="정보 입력 후 클릭"

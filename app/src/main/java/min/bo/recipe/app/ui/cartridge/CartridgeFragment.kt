@@ -1,9 +1,13 @@
 package min.bo.recipe.app.ui.cartridge
 
 import android.app.Activity
+import android.content.ContentResolver
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.Matrix
+import android.media.ExifInterface
 import android.media.ThumbnailUtils
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
@@ -129,7 +133,15 @@ class CartridgeFragment:Fragment() {
             }
         }
         //val classes = arrayOf("Apple", "Banana", "Orange")
-        val classes = arrayOf("포스트 듀오링","마켓오 그래놀라 단백질 넛츠 카라멜","포스트 코코 그래놀라")
+        val classes = arrayOf("그라놀리지 블랙세서미 스트리트 흑임자", "그라놀리지 카카올로지 그래놀라", "네이쳐패스 러브 크런치 베리", "롯데제과 퀘이커 오트밀 오리지널", "마켓오 그래놀라 다이제", "마켓오 그래놀라 단백질 넛츠 카라멜",
+            "볼제너뮬러 유기농 초코크런치", "씨알로 우리쌀프레이크", "아몬드", "오그래 퐁", "오리온 미쯔 시리얼", "오리온 오 그래놀라 팝 초코 아몬드", "오리온 오 그래놀라 팝 현미아몬드",
+            "위트빅스 오리지날", "제너럴밀스 시나몬 토스트 크런치'", "켈로그 고소한 오곡 푸레이크", "켈로그 담백한 현미 푸레이크", "켈로그 리얼 그래놀라", "켈로그 리얼 그래놀라 크런치오트",
+            "켈로그 스페셜K 오리지널", "켈로그 첵스 초코 스노우 초코볼", "켈로그 첵스초코 레인보우", "켈로그 첵스초코 마시멜로", "켈로그 첵스초코 문앤스타", "켈로그 첵스초코 오리지널", "켈로그 코코팝스",
+            "켈로그 콘푸로스트 라이트 슈거", "켈로그 콘프로스트", "켈로그 통귀리 그래놀라", "켈로그 프로틴 그래놀라 다크초코볼", "켈로그 허쉬 초코크런치", "켈로그 현미 푸레이크", "켈로그 후르트링",
+            "포스트 건강한칠곡", "포스트 고소한 아몬드 후레이크", "포스트 그래놀라 크랜베리 아몬드", "포스트 듀오링", "포스트 라이스앤 단백질 후레이크", "포스트 오곡 코코볼", "포스트 오레오 오즈",
+            "포스트 오레오오즈 민트초코", "포스트 오트밀 오리지널", "포스트 초코 후레이크", "포스트 코코 그래놀라", "포스트 코코아 페블", "포스트 콘푸라이트", "포스트 허니 오즈", "포스트 현미 그래놀라",
+            "플라하반 아이리쉬 포리지 오트밀 시리얼", "플라하반 퀵 오트밀 오리지날")
+
 
         result.text = classes[maxPos]
 
@@ -142,6 +154,8 @@ class CartridgeFragment:Fragment() {
 // Releases model resources if no longer used.
         model.close()
     }
+
+
 
 
 

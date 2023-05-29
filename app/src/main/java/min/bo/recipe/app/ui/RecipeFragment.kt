@@ -128,15 +128,15 @@ class RecipeFragment: Fragment() {
             val myRef = database1.getReference("top_banners")
 
 
-            var carbo_gram_kcal= 0.0
-            var protein_gram_kcal = 0.0
-            var fat_gram_kcal = 0.0
+            var carbo_gram_kcal= 0
+            var protein_gram_kcal = 0
+            var fat_gram_kcal = 0
 
             myRef.child("0").child("product_detail").child("kcal").addListenerForSingleValueEvent(object :
                 ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     val kcal = dataSnapshot.getValue(String::class.java)
-                    carbo_gram_kcal = kcal!!.toDouble()
+                    carbo_gram_kcal = kcal!!.toInt()
 
                     /*
                     coroutineScope.launch {
@@ -159,7 +159,7 @@ class RecipeFragment: Fragment() {
                 ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     val kcal = dataSnapshot.getValue(String::class.java)
-                    protein_gram_kcal = kcal!!.toDouble()
+                    protein_gram_kcal = kcal!!.toInt()
 
 
                 }
@@ -173,7 +173,7 @@ class RecipeFragment: Fragment() {
                 ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     val kcal = dataSnapshot.getValue(String::class.java)
-                    fat_gram_kcal = kcal!!.toDouble()
+                    fat_gram_kcal = kcal!!.toInt()
 
 
 
@@ -187,7 +187,7 @@ class RecipeFragment: Fragment() {
 
 
             Handler(Looper.getMainLooper()).postDelayed({
-                kcalText.text = "Carbo Cereal: " + carbo_gram_kcal.toString() + " Protein Cereal: " + protein_gram_kcal.toString() + " Fat Cereal: " + fat_gram_kcal.toString()
+                kcalText.text = "1번 : " + carbo_gram_kcal.toString() + "k | 2번 : " + protein_gram_kcal.toString() + "k | 3번 : " + fat_gram_kcal.toString()+"k"
                 result/=5
                 var carbo_gram = 20
                 var protein_gram = 20
@@ -219,9 +219,9 @@ class RecipeFragment: Fragment() {
 
                 }
 
-                gramText.text = "탄수 :" +carbo_gram.toString() +" 단백질 : " +protein_gram.toString() + " 지방 : " +fat_gram.toString()
+                gramText.text = "1번 : " +carbo_gram.toString() +"g | 2번 : " +protein_gram.toString() + "g | 3번 : " +fat_gram.toString()+"g"
 
-                /*
+
                 webView = WebView(requireContext())
 
                 webView.settings.javaScriptEnabled =true
@@ -230,7 +230,7 @@ class RecipeFragment: Fragment() {
 
                 webView.webViewClient = WebViewClient()
                 webView.loadUrl("http://192.168.0.125/page1?salt="+carbo_gram.toString()+"&sugar="+protein_gram.toString()+"&blackpepper="+fat_gram.toString())
-*/
+
             }, 3000)
 
         }

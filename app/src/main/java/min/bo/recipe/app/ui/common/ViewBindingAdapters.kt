@@ -15,6 +15,8 @@ fun upodateColor(view:View, isColor:String)
         }else if(isColor == "단백질 특화 시리얼 입니다."){
             view.setTextColor(Color.RED)
 
+        } else if(isColor == "지방 특화 시리얼 입니다."){
+            view.setTextColor(Color.YELLOW)
         }
         else {
             view.setTextColor(Color.BLACK)

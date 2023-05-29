@@ -59,12 +59,21 @@ class SelectFragment:Fragment() {
 
 
         val indivisualButton:Button = view.findViewById(R.id.indivisual_print_btn)
+
+        val gramInformationEditText1: EditText = view.findViewById(R.id.table_gram1)
+        val gramInformationEditText2: EditText = view.findViewById(R.id.table_gram2)
+        val gramInformationEditText3: EditText = view.findViewById(R.id.table_gram3)
+
+
+
+        /*
         val gramInformationEditText1: EditText = view.findViewById(R.id.gram_information1)
         val gramInformationEditText2: EditText = view.findViewById(R.id.gram_information2)
         val gramInformationEditText3: EditText = view.findViewById(R.id.gram_information3)
-
+        */
 
         //개별출력 text에 나오게
+
         val cereal1:TextView = view.findViewById(R.id.carbo)
         val cereal2:TextView = view.findViewById(R.id.protein)
         val cereal3:TextView = view.findViewById(R.id.fat)
@@ -129,11 +138,9 @@ class SelectFragment:Fragment() {
             webView.loadUrl("http://192.168.0.125/page1?salt="+gramInformation1+"&sugar="+gramInformation2+"&blackpepper="+gramInformation3)
 
 
+            //println(gramInformation1)
 
-
-
-            indivisualButton.text = "출력시작"
-
+            
 
 
 

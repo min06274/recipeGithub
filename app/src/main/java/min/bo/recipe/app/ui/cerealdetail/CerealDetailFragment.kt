@@ -55,7 +55,7 @@ class CerealDetailFragment: Fragment() {
         }
 
         binding.cerealDetailCarboBtn.setOnClickListener{
-            binding.cerealDetailCarboBtn.text="눌림"
+            binding.cerealDetailCarboBtn.text="추가됨"
             myRef.child(0.toString()).child("background_image_url")
                 .setValue(cerealImage)
             myRef.child(0.toString()).child("product_detail").child("brand_name")
@@ -67,7 +67,7 @@ class CerealDetailFragment: Fragment() {
         }
 
         binding.cerealDetailProteinBtn.setOnClickListener{
-            binding.cerealDetailProteinBtn.text="눌림"
+            binding.cerealDetailProteinBtn.text="추가됨"
             myRef.child(1.toString()).child("background_image_url")
                 .setValue(cerealImage)
             myRef.child(1.toString()).child("product_detail").child("brand_name")
@@ -79,7 +79,7 @@ class CerealDetailFragment: Fragment() {
         }
 
         binding.cerealDetailFatBtn.setOnClickListener{
-            binding.cerealDetailFatBtn.text="눌림"
+            binding.cerealDetailFatBtn.text="추가됨"
             myRef.child(2.toString()).child("background_image_url")
                 .setValue(cerealImage)
             myRef.child(2.toString()).child("product_detail").child("brand_name")
