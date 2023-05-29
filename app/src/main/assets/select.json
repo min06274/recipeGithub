@@ -454,61 +454,16 @@
 
     {
       "cereal_image_url": "https://raw.githubusercontent.com/BlackJackLJM/shoppi-kotlin-console-app/main/%EC%8B%9C%EB%A6%AC%EC%96%BC%20%EB%A9%94%EC%9D%B8%20%EC%9D%B4%EB%AF%B8%EC%A7%80/%ED%8F%AC%EC%8A%A4%ED%8A%B8%20%EB%93%80%EC%98%A4%EB%A7%81.jpg",
-      "name": "포스트 듀오링0",
+      "name": "포스트 듀오링",
       "information" : "100g 당 탄수화물: 79 단백질: 6 지방: 8",
       "cereal_id": "0",
       "cereal_kcal" : "4",
       "cereal_spec" : "탄수화물 특화 시리얼 입니다.",
       "cereal_purchase_url": "https://www.coupang.com/vp/products/6164209860?itemId=11980048097&vendorItemId=81616128550&q=%ED%8F%AC%EC%8A%A4%ED%8A%B8+%EB%93%80%EC%98%A4%EB%A7%81&itemsCount=36&searchId=a23ffd8039324d41b8a9bd02ccfa8cac&rank=2&isAddedCart="
-    },
-
-
-    {
-      "cereal_image_url": "https://raw.githubusercontent.com/BlackJackLJM/shoppi-kotlin-console-app/main/%EC%8B%9C%EB%A6%AC%EC%96%BC%20%EB%A9%94%EC%9D%B8%20%EC%9D%B4%EB%AF%B8%EC%A7%80/%ED%8F%AC%EC%8A%A4%ED%8A%B8%20%EB%93%80%EC%98%A4%EB%A7%81.jpg",
-      "name": "포스트 듀오링1",
-      "information" : "100g 당 탄수화물: 79 단백질: 6 지방: 8",
-      "cereal_id": "1",
-      "cereal_kcal" : "4",
-      "cereal_spec" : "탄수화물 특화 시리얼 입니다.",
-      "cereal_purchase_url": "https://www.coupang.com/vp/products/6164209860?itemId=11980048097&vendorItemId=81616128550&q=%ED%8F%AC%EC%8A%A4%ED%8A%B8+%EB%93%80%EC%98%A4%EB%A7%81&itemsCount=36&searchId=a23ffd8039324d41b8a9bd02ccfa8cac&rank=2&isAddedCart="
-    },
-
-    {
-      "cereal_image_url": "https://raw.githubusercontent.com/BlackJackLJM/shoppi-kotlin-console-app/main/%EC%8B%9C%EB%A6%AC%EC%96%BC%20%EB%A9%94%EC%9D%B8%20%EC%9D%B4%EB%AF%B8%EC%A7%80/%ED%8F%AC%EC%8A%A4%ED%8A%B8%20%EB%93%80%EC%98%A4%EB%A7%81.jpg",
-      "name": "포스트 듀오링2",
-      "information" : "100g 당 탄수화물: 79 단백질: 6 지방: 8",
-      "cereal_id": "2",
-      "cereal_kcal" : "4",
-      "cereal_spec" : "탄수화물 특화 시리얼 입니다.",
-      "cereal_purchase_url": "https://www.coupang.com/vp/products/6164209860?itemId=11980048097&vendorItemId=81616128550&q=%ED%8F%AC%EC%8A%A4%ED%8A%B8+%EB%93%80%EC%98%A4%EB%A7%81&itemsCount=36&searchId=a23ffd8039324d41b8a9bd02ccfa8cac&rank=2&isAddedCart="
-    },
-    {
-      "cereal_image_url": "https://raw.githubusercontent.com/BlackJackLJM/shoppi-kotlin-console-app/main/%EC%8B%9C%EB%A6%AC%EC%96%BC%20%EB%A9%94%EC%9D%B8%20%EC%9D%B4%EB%AF%B8%EC%A7%80/%ED%8F%AC%EC%8A%A4%ED%8A%B8%20%EB%93%80%EC%98%A4%EB%A7%81.jpg",
-      "name": "포스트 듀오링3",
-      "information" : "100g 당 탄수화물: 79 단백질: 6 지방: 8",
-      "cereal_id": "3",
-      "cereal_kcal" : "4",
-      "cereal_spec" : "탄수화물 특화 시리얼 입니다.",
-      "cereal_purchase_url": "https://www.coupang.com/vp/products/6164209860?itemId=11980048097&vendorItemId=81616128550&q=%ED%8F%AC%EC%8A%A4%ED%8A%B8+%EB%93%80%EC%98%A4%EB%A7%81&itemsCount=36&searchId=a23ffd8039324d41b8a9bd02ccfa8cac&rank=2&isAddedCart="
-    },
-    {
-      "cereal_image_url": "https://raw.githubusercontent.com/BlackJackLJM/shoppi-kotlin-console-app/main/%EC%8B%9C%EB%A6%AC%EC%96%BC%20%EB%A9%94%EC%9D%B8%20%EC%9D%B4%EB%AF%B8%EC%A7%80/%ED%8F%AC%EC%8A%A4%ED%8A%B8%20%EB%93%80%EC%98%A4%EB%A7%81.jpg",
-      "name": "포스트 듀오링4",
-      "information" : "100g 당 탄수화물: 79 단백질: 6 지방: 8",
-      "cereal_id": "4",
-      "cereal_kcal" : "4",
-      "cereal_spec" : "탄수화물 특화 시리얼 입니다.",
-      "cereal_purchase_url": "https://www.coupang.com/vp/products/6164209860?itemId=11980048097&vendorItemId=81616128550&q=%ED%8F%AC%EC%8A%A4%ED%8A%B8+%EB%93%80%EC%98%A4%EB%A7%81&itemsCount=36&searchId=a23ffd8039324d41b8a9bd02ccfa8cac&rank=2&isAddedCart="
-    },
-    {
-      "cereal_image_url": "https://raw.githubusercontent.com/BlackJackLJM/shoppi-kotlin-console-app/main/%EC%8B%9C%EB%A6%AC%EC%96%BC%20%EB%A9%94%EC%9D%B8%20%EC%9D%B4%EB%AF%B8%EC%A7%80/%ED%8F%AC%EC%8A%A4%ED%8A%B8%20%EB%93%80%EC%98%A4%EB%A7%81.jpg",
-      "name": "포스트 듀오링5",
-      "information" : "100g 당 탄수화물: 79 단백질: 6 지방: 8",
-      "cereal_id": "5",
-      "cereal_kcal" : "4",
-      "cereal_spec" : "탄수화물 특화 시리얼 입니다.",
-      "cereal_purchase_url": "https://www.coupang.com/vp/products/6164209860?itemId=11980048097&vendorItemId=81616128550&q=%ED%8F%AC%EC%8A%A4%ED%8A%B8+%EB%93%80%EC%98%A4%EB%A7%81&itemsCount=36&searchId=a23ffd8039324d41b8a9bd02ccfa8cac&rank=2&isAddedCart="
     }
+
+
+
 
   ]
 

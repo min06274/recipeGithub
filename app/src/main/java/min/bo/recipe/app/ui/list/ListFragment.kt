@@ -54,11 +54,7 @@ class ListFragment: Fragment() {
 
     }
 
-    override fun onResume() {
-        super.onResume()
-        // Perform the refresh logic here
-        println("dldldl")
-    }
+   
     private fun openCerealDetail(cerealId:String,cerealName:String,cerealImage:String,cerealInformation:String,cerealKcal:String,cerealPurchase:String){
         findNavController().navigate(R.id.action_list_to_cereal_detail, bundleOf(
                 KEY_CEREAL_ID to cerealId,
