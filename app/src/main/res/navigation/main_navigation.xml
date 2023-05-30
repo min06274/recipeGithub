@@ -7,7 +7,13 @@
     <fragment
         android:id="@+id/navigation_recipe"
         android:name="min.bo.recipe.app.ui.RecipeFragment"
-        android:label="RecipeFragment" />
+        android:label="RecipeFragment" >
+        <action
+            android:id="@+id/action_recipe_to_recipe_detail"
+            app:destination="@id/navigation_recipe_detail" />
+    </fragment>
+
+
     <fragment
         android:id="@+id/navigation_cartridge"
         android:name="min.bo.recipe.app.ui.cartridge.CartridgeFragment"
@@ -29,4 +35,9 @@
         android:id="@+id/navigation_cereal_detail"
         android:name="min.bo.recipe.app.ui.cerealdetail.CerealDetailFragment"
         android:label="CerealDetailFragment" />
+
+    <fragment
+        android:id="@+id/navigation_recipe_detail"
+        android:name="min.bo.recipe.app.ui.recipedetail.RecipeDetailFragment"
+        android:label="RecipeDetailFragment" />
 </navigation>

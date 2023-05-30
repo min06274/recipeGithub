@@ -10,7 +10,9 @@ import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.*
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -18,6 +20,10 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.*
 import min.bo.recipe.app.R
+import min.bo.recipe.app.common.KEY_CARBO
+import min.bo.recipe.app.common.KEY_FAT
+import min.bo.recipe.app.common.KEY_PROTEIN
+import min.bo.recipe.app.common.KEY_RESULT
 
 class RecipeFragment: Fragment() {
 
@@ -124,6 +130,8 @@ class RecipeFragment: Fragment() {
 
             }
 
+
+            val result_to = result
             val database1 = Firebase.database("https://cereal-22a02-default-rtdb.asia-southeast1.firebasedatabase.app/")
             val myRef = database1.getReference("top_banners")
 
@@ -132,17 +140,95 @@ class RecipeFragment: Fragment() {
             var protein_gram_kcal = 0
             var fat_gram_kcal = 0
 
+
+            var cartridge1Carbo = 0
+            var cartridge1Protein= 0
+            var cartridge1Fat=0
+
+            var cartridge2Carbo = 0
+            var cartridge2Protein= 0
+            var cartridge2Fat=0
+
+            var cartridge3Carbo = 0
+            var cartridge3Protein= 0
+            var cartridge3Fat=0
+
+
+
+            myRef.child("0").child("product_detail").child("information").addListenerForSingleValueEvent(object :
+                ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val carbo_string = dataSnapshot.getValue(String::class.java)
+
+                    cartridge1Carbo = carbo_string?.slice(13..14)!!.toInt()
+
+                    cartridge1Protein = carbo_string?.slice(21..22)!!.toInt()
+
+                    cartridge1Fat = carbo_string?.slice(28..29)!!.toInt()
+
+
+                }
+
+
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    // Handle any errors that occur during the retrieval
+                }
+            })
+
+
+            myRef.child("1").child("product_detail").child("information").addListenerForSingleValueEvent(object :
+                ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val carbo_string = dataSnapshot.getValue(String::class.java)
+
+                    cartridge2Carbo = carbo_string?.slice(13..14)!!.toInt()
+
+                    cartridge2Protein = carbo_string?.slice(21..22)!!.toInt()
+
+                    cartridge2Fat = carbo_string?.slice(28..29)!!.toInt()
+
+
+                }
+
+
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    // Handle any errors that occur during the retrieval
+                }
+            })
+
+
+            myRef.child("2").child("product_detail").child("information").addListenerForSingleValueEvent(object :
+                ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val carbo_string = dataSnapshot.getValue(String::class.java)
+
+                    cartridge3Carbo = carbo_string?.slice(13..14)!!.toInt()
+
+                    cartridge3Protein = carbo_string?.slice(21..22)!!.toInt()
+
+                    cartridge3Fat = carbo_string?.slice(28..29)!!.toInt()
+
+
+                }
+
+
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    // Handle any errors that occur during the retrieval
+                }
+            })
+
+
+
+
             myRef.child("0").child("product_detail").child("kcal").addListenerForSingleValueEvent(object :
                 ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     val kcal = dataSnapshot.getValue(String::class.java)
                     carbo_gram_kcal = kcal!!.toInt()
 
-                    /*
-                    coroutineScope.launch {
-                        delayAndUpdateKcalText(gramText,kcalText,carbo_gram_kcal,protein_gram_kcal,fat_gram_kcal,result)
-                    }
-                    */
 
 
                 }
@@ -222,6 +308,9 @@ class RecipeFragment: Fragment() {
                 gramText.text = "1번 : " +carbo_gram.toString() +"g | 2번 : " +protein_gram.toString() + "g | 3번 : " +fat_gram.toString()+"g"
 
 
+                openRecipeDetail(result_to,carbo_gram,protein_gram,fat_gram)
+
+                /*
                 webView = WebView(requireContext())
 
                 webView.settings.javaScriptEnabled =true
@@ -230,77 +319,24 @@ class RecipeFragment: Fragment() {
 
                 webView.webViewClient = WebViewClient()
                 webView.loadUrl("http://192.168.0.125/page1?salt="+carbo_gram.toString()+"&sugar="+protein_gram.toString()+"&blackpepper="+fat_gram.toString())
-
+*/
             }, 3000)
 
         }
     }
 
+    private fun openRecipeDetail(result_to: Double, carbo_gram:Int,protein_gram:Int,fat_gram:Int){
+        findNavController().navigate(R.id.action_recipe_to_recipe_detail, bundleOf(
 
-    /*
-    suspend fun delayAndUpdateKcalText(gramText:TextView,kcalText:TextView, carbo_gram_kcal:Double,protein_gram_kcal:Double,fat_gram_kcal:Double,result:Double) {
-        delay(4000) // Delay for 1 second (adjust the duration as needed)
-
-        // Update the kcalText
-        withContext(Dispatchers.Main) {
-
-            var rresult = result
+            KEY_RESULT to result_to,
+            KEY_CARBO to carbo_gram,
+            KEY_PROTEIN to protein_gram,
+            KEY_FAT to fat_gram
 
 
-            var ccarbo_gram_kcal = carbo_gram_kcal
-            var pprotein_gram_kcal = protein_gram_kcal
-            var ffat_gram_kcal = fat_gram_kcal
-
-            kcalText.text = "탄수 시리얼: " + ccarbo_gram_kcal.toString() + " 단백질 시리얼: " + pprotein_gram_kcal.toString() + " 지방 시리얼: " + ffat_gram_kcal.toString()
-
-            var carbo_gram = 20
-            var protein_gram = 20
-            var fat_gram = 20
-
-
-
-            rresult/=5
-            var total_kcal = carbo_gram*ccarbo_gram_kcal+protein_gram*pprotein_gram_kcal+fat_gram*ffat_gram_kcal
-
-            println(total_kcal)
-            println(rresult)
-            println("carbo")
-            println(carbo_gram)
-            if (total_kcal >=rresult)
-            {
-
-                while(total_kcal >= rresult)
-                {
-                    carbo_gram -=1
-                    fat_gram-=1
-                    total_kcal = carbo_gram*ccarbo_gram_kcal+protein_gram*pprotein_gram_kcal+fat_gram*ffat_gram_kcal
-                }
-            }
-
-            else if(total_kcal < rresult)
-            {
-
-
-                while(total_kcal<rresult)
-                {
-                    protein_gram+=3
-                    carbo_gram +=1
-                    fat_gram +=1
-                    total_kcal = carbo_gram*ccarbo_gram_kcal+protein_gram*pprotein_gram_kcal+fat_gram*ffat_gram_kcal
-                }
-            }
-
-
-
-            gramText.text = "탄수 :" +carbo_gram.toString() +" 단백질 : " +protein_gram.toString() + " 지방 : " +fat_gram.toString()
-
-
-
-        }
-
-
-
+        ))
     }
 
-    */
+
+
 }
