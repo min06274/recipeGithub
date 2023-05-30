@@ -29,4 +29,11 @@
         android:title="List"
 
         />
+
+    <item
+        android:id="@+id/navigation_log"
+        android:icon="@drawable/selector_list_icon"
+        android:title="Log"
+
+        />
 </menu>

@@ -465,6 +465,26 @@
 
 
 
+  ],
+
+  "log_list": [
+    {
+      "date": "2023-05-30",
+      "time": "12:30",
+      "cartridge1": "그래놀라",
+      "cartridge2": "오그래퐁",
+      "cartridge3": "듀오링",
+      "cartridge_gram1": "10",
+      "cartridge_gram2": "7",
+      "cartridge_gram3": "5",
+      "carbo_gram": "20",
+      "protein_gram": "21",
+      "fat_gram": "22",
+      "carbo_percent": "30%",
+      "protein_percent": "31%",
+      "fat_percent": "32%",
+      "log_id": "0"
+    }
   ]
 
 

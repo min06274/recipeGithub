@@ -40,4 +40,20 @@
         android:id="@+id/navigation_recipe_detail"
         android:name="min.bo.recipe.app.ui.recipedetail.RecipeDetailFragment"
         android:label="RecipeDetailFragment" />
+
+
+    <fragment
+        android:id="@+id/navigation_log"
+        android:name="min.bo.recipe.app.ui.log.LogFragment"
+        android:label="LogFragment" >
+        <action
+            android:id="@+id/action_log_to_log_detail"
+            app:destination="@id/navigation_log_detail" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/navigation_log_detail"
+        android:name="min.bo.recipe.app.ui.logdetail.LogDetailFragment"
+        android:label="LogDetailFragment" />
 </navigation>

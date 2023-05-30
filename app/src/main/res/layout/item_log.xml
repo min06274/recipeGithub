@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="min.bo.recipe.app.ui.log.LogViewModel" />
+        <variable
+            name="log"
+            type="min.bo.recipe.app.model.LogData" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> viewModel.openLogDetail(log)}"
+        >
+
+
+        <TextView
+            android:id="@+id/log_date"
+            android:layout_marginStart="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+
+            android:text="@{log.date}" />
+
+        <TextView
+            android:id="@+id/log_information"
+            android:layout_marginStart="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/log_date"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            android:text="@{log.time}" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
