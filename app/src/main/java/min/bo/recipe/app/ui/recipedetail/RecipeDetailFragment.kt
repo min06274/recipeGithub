@@ -11,6 +11,7 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.github.mikephil.charting.animation.Easing
+import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
@@ -29,6 +30,7 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Arrays.toString
+import kotlin.math.round
 
 class RecipeDetailFragment:Fragment() {
 
@@ -55,33 +57,41 @@ class RecipeDetailFragment:Fragment() {
 
         setNavigation()
 
+        val cartridge1 = requireArguments().getInt(KEY_CARTRIDGE_GRAM1)
+        val cartridge2 = requireArguments().getInt(KEY_CARTRIDGE_GRAM2)
+        val cartridge3 = requireArguments().getInt(KEY_CARTRIDGE_GRAM3)
 
 
-        println("넘어온이후~~~~\n\n\n")
-
-        println(requireArguments().getInt(KEY_CARTRIDGE_GRAM1))
-        println(requireArguments().getInt(KEY_CARTRIDGE_GRAM2))
-        println(requireArguments().getInt(KEY_CARTRIDGE_GRAM3))
-        println(requireArguments().getDouble(KEY_CARBO))
-        println(requireArguments().getDouble(KEY_PROTEIN))
-        println(requireArguments().getDouble(KEY_FAT))
-
-        println(requireArguments().getInt(KEY_PRINT_KCAL))
-        println(requireArguments().getDouble(KEY_TOTAL_KCAL))
+        binding.printCereals.text = "1번 : " + cartridge1.toString() + "g 2번 : " +cartridge2.toString() + "g 3번 : "+cartridge3.toString() + "g 이 출력됩니다."
 
 
 
+        val print_kcal = requireArguments().getInt(KEY_PRINT_KCAL)
 
-        val carbo_one_percent = 3.3*requireArguments().getDouble(KEY_TOTAL_KCAL)/2000 //자신의 기초대사량에서 1%인 탄수g
+        val my_kcal = round(requireArguments().getDouble(KEY_TOTAL_KCAL))
+        val print_carbo = round(requireArguments().getDouble(KEY_CARBO))
+        val print_protein = round(requireArguments().getDouble(KEY_PROTEIN))
+        val print_fat = round(requireArguments().getDouble(KEY_FAT))
+
+        val my_carbo = round(333.75*my_kcal/2000)
+        val my_protein = round(50*my_kcal/2000)
+        val my_fat = round(40*my_kcal/2000)
+
         //넘어온 탄수 g값이 자신의 탄수화물 일일섭취량의 몇퍼센트인지
-        val carbo_percent_oneday = (requireArguments().getDouble(KEY_CARBO) / carbo_one_percent).toFloat()
+        val carbo_percent_oneday = (print_carbo / my_carbo*100).toFloat()
 
-        val protein_one_percent = 0.5*requireArguments().getDouble(KEY_TOTAL_KCAL)/2000
-        val proetein_percent_oneday = (requireArguments().getDouble(KEY_PROTEIN) / protein_one_percent).toFloat()
+        val proetein_percent_oneday = (print_protein / my_protein*100).toFloat()
 
 
-        val fat_one_percent = 0.4*requireArguments().getDouble(KEY_TOTAL_KCAL)/2000
-        val fat_percent_oneday = (requireArguments().getDouble(KEY_FAT) / fat_one_percent).toFloat()
+        val fat_percent_oneday = (print_fat / my_fat*100).toFloat()
+
+
+        val kcal_percent_oneday = (print_kcal/my_kcal*100).toFloat()
+
+        binding.chart1Title.text = print_carbo.toString() + " / " + my_carbo.toString()
+        binding.chart2Title.text = print_protein.toString() + " / " + my_protein.toString()
+        binding.chart3Title.text = print_fat.toString() + " / " + my_fat.toString()
+        binding.chart4Title.text = print_kcal.toString() + " / " + my_kcal.toString()
 
 
         binding.pieChart1.setUsePercentValues(true)
@@ -97,14 +107,19 @@ class RecipeDetailFragment:Fragment() {
         dataSet.setDrawIcons(false)
 
 
+
         val data = PieData(dataSet)
         data.setValueFormatter(PercentFormatter())
-        data.setValueTextSize(15f)
+        data.setValueTextSize(10f)
         data.setValueTypeface(Typeface.DEFAULT_BOLD)
-        data.setValueTextColor(Color.WHITE)
+        data.setValueTextColor(Color.BLACK)
         binding.pieChart1.setData(data)
-        binding.pieChart1.description.isEnabled = false
+        binding.pieChart1.description.isEnabled=false
         binding.pieChart1.legend.isEnabled = false
+
+
+
+
 
 
 
@@ -134,14 +149,18 @@ class RecipeDetailFragment:Fragment() {
         val data2 = PieData(dataSet2)
         data2.setValueFormatter(PercentFormatter())
 
-        data2.setValueTextSize(15f)
+        data2.setValueTextSize(10f)
         data2.setValueTypeface(Typeface.DEFAULT_BOLD)
-        data2.setValueTextColor(Color.WHITE)
+        data2.setValueTextColor(Color.BLACK)
         binding.pieChart2.setData(data2)
         binding.pieChart2.description.isEnabled=false
         binding.pieChart2.legend.isEnabled=false
 
-        dataSet2.colors = colors
+
+        val colors2: ArrayList<Int> = ArrayList()
+        colors2.add(Color.RED)
+        colors2.add(Color.DKGRAY)
+        dataSet2.colors = colors2
 
 
         binding.pieChart2.animateY(1000, Easing.EaseInOutQuad)
@@ -151,15 +170,72 @@ class RecipeDetailFragment:Fragment() {
 
 
 
+        binding.pieChart3.setUsePercentValues(true)
+
+        val entries3:ArrayList<PieEntry> = ArrayList()
+        entries3.add(PieEntry(fat_percent_oneday,"지방"))
+        entries3.add(PieEntry(100f-fat_percent_oneday,""))
+
+
+
+        val dataSet3 = PieDataSet(entries3,"")
+        dataSet3.setDrawIcons(false)
+
+        val data3 = PieData(dataSet3)
+        data3.setValueFormatter(PercentFormatter())
+
+        data3.setValueTextSize(10f)
+        data3.setValueTypeface(Typeface.DEFAULT_BOLD)
+        data3.setValueTextColor(Color.BLACK)
+        binding.pieChart3.setData(data3)
+        binding.pieChart3.description.isEnabled=false
+        binding.pieChart3.legend.isEnabled=false
+
+
+        val colors3: ArrayList<Int> = ArrayList()
+        colors3.add(Color.BLUE)
+        colors3.add(Color.DKGRAY)
+        dataSet3.colors = colors3
+
+
+        binding.pieChart3.animateY(1000, Easing.EaseInOutQuad)
+
+        binding.pieChart3.invalidate()
 
 
 
 
+        binding.pieChart4.setUsePercentValues(true)
+
+        val entries4:ArrayList<PieEntry> = ArrayList()
+        entries4.add(PieEntry(kcal_percent_oneday,"칼로리"))
+        entries4.add(PieEntry(100f-kcal_percent_oneday,""))
 
 
 
+        val dataSet4= PieDataSet(entries4,"")
+        dataSet4.setDrawIcons(false)
+
+        val data4 = PieData(dataSet4)
+        data4.setValueFormatter(PercentFormatter())
+
+        data4.setValueTextSize(10f)
+        data4.setValueTypeface(Typeface.DEFAULT_BOLD)
+        data4.setValueTextColor(Color.BLACK)
+        binding.pieChart4.setData(data4)
+        binding.pieChart4.description.isEnabled=false
+        binding.pieChart4.legend.isEnabled=false
 
 
+        val colors4: ArrayList<Int> = ArrayList()
+        colors4.add(Color.YELLOW)
+        colors4.add(Color.DKGRAY)
+        dataSet4.colors = colors4
+
+
+        binding.pieChart4.animateY(1000, Easing.EaseInOutQuad)
+
+        binding.pieChart4.invalidate()
 
 
 
