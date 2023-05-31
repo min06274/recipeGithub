@@ -249,17 +249,17 @@ class SelectFragment:Fragment() {
                 }
                 else {
                     val fir_edit = inputText.toDouble()
-                    var temp = round(fir_edit*first_carbo)
-                    var temp_p = round(fir_edit*first_protein)
-                    var temp_f = round(fir_edit*first_fat)
+                    var temp = fir_edit*first_carbo
+                    var temp_p = fir_edit*first_protein
+                    var temp_f = fir_edit*first_fat
                     var temp_k = fir_edit*first_kcal
                     carbo1 =temp
                     protein1 = temp_p
                     fat1 = temp_f
                     kcal1 = temp_k.toInt()
-                    carbo_percent_oneday = ((carbo1+carbo2+carbo3) / my_carbo * 100).toFloat()
-                    protein_percent_oneday = ((protein1+protein2+protein3) / my_protein * 100).toFloat()
-                    fat_percent_oneday = ((fat1+fat2+fat3) / my_fat * 100).toFloat()
+                    carbo_percent_oneday = (round(carbo1+carbo2+carbo3) / my_carbo * 100).toFloat()
+                    protein_percent_oneday = (round(protein1+protein2+protein3) / my_protein * 100).toFloat()
+                    fat_percent_oneday = (round(fat1+fat2+fat3) / my_fat * 100).toFloat()
                     kcal_percent_oneday = ((kcal1+kcal2+kcal3) / my_kcal *100).toFloat()
 
                     println(protein1+protein2+protein3)
@@ -270,9 +270,9 @@ class SelectFragment:Fragment() {
                     updatePieChart3(fat_percent_oneday, binding.pieChart3)
                     updatePieChart4(kcal_percent_oneday, binding.pieChart4)
 
-                    binding.chart1Title.text = (carbo1+carbo2+carbo3).toString() + " / " + my_carbo.toString()
-                    binding.chart2Title.text = (protein1+protein2+protein3).toString() + " / " + my_protein.toString()
-                    binding.chart3Title.text = (fat1+fat2+fat3).toString() + " / " + my_fat.toString()
+                    binding.chart1Title.text = round((carbo1+carbo2+carbo3)).toString() + " / " + my_carbo.toString()
+                    binding.chart2Title.text = round((protein1+protein2+protein3)).toString() + " / " + my_protein.toString()
+                    binding.chart3Title.text = round((fat1+fat2+fat3)).toString() + " / " + my_fat.toString()
                     binding.chart4Title.text = (kcal1+kcal2+kcal3).toString() + " / " + my_kcal.toString()
 
 
@@ -296,17 +296,17 @@ class SelectFragment:Fragment() {
                 }
                 else {
                     val fir_edit = inputText.toDouble()
-                    var temp = round(fir_edit*first_carbo)
-                    var temp_p = round(fir_edit*first_protein)
-                    var temp_f = round(fir_edit*first_fat)
+                    var temp = fir_edit*first_carbo
+                    var temp_p = fir_edit*first_protein
+                    var temp_f = fir_edit*first_fat
                     var temp_k = fir_edit*first_kcal
                     carbo1 =temp
                     protein1 = temp_p
                     fat1 = temp_f
                     kcal1 = temp_k.toInt()
-                    carbo_percent_oneday = ((carbo1+carbo2+carbo3) / my_carbo * 100).toFloat()
-                    protein_percent_oneday = ((protein1+protein2+protein3) / my_protein * 100).toFloat()
-                    fat_percent_oneday = ((fat1+fat2+fat3) / my_fat * 100).toFloat()
+                    carbo_percent_oneday = (round(carbo1+carbo2+carbo3) / my_carbo * 100).toFloat()
+                    protein_percent_oneday = (round(protein1+protein2+protein3) / my_protein * 100).toFloat()
+                    fat_percent_oneday = (round(fat1+fat2+fat3) / my_fat * 100).toFloat()
                     kcal_percent_oneday = ((kcal1+kcal2+kcal3) / my_kcal *100).toFloat()
                     println(protein1+protein2+protein3)
 
@@ -317,9 +317,9 @@ class SelectFragment:Fragment() {
                     updatePieChart3(fat_percent_oneday, binding.pieChart3)
                     updatePieChart4(kcal_percent_oneday, binding.pieChart4)
 
-                    binding.chart1Title.text = (carbo1+carbo2+carbo3).toString() + " / " + my_carbo.toString()
-                    binding.chart2Title.text = (protein1+protein2+protein3).toString() + " / " + my_protein.toString()
-                    binding.chart3Title.text = (fat1+fat2+fat3).toString() + " / " + my_fat.toString()
+                    binding.chart1Title.text = round((carbo1+carbo2+carbo3)).toString() + " / " + my_carbo.toString()
+                    binding.chart2Title.text = round((protein1+protein2+protein3)).toString() + " / " + my_protein.toString()
+                    binding.chart3Title.text = round((fat1+fat2+fat3)).toString() + " / " + my_fat.toString()
                     binding.chart4Title.text = (kcal1+kcal2+kcal3).toString() + " / " + my_kcal.toString()
 
 
@@ -352,17 +352,17 @@ class SelectFragment:Fragment() {
                 }
                 else {
                     val fir_edit = inputText.toDouble()
-                    var temp = round(fir_edit*second_carbo)
-                    var temp_p = round(fir_edit*second_protein)
-                    var temp_f = round(fir_edit*second_fat)
+                    var temp = fir_edit*second_carbo
+                    var temp_p = fir_edit*second_protein
+                    var temp_f = fir_edit*second_fat
                     var temp_k = fir_edit*second_kcal
                     carbo2 =temp
                     protein2 = temp_p
                     fat2 = temp_f
                     kcal2 = temp_k.toInt()
-                    carbo_percent_oneday = ((carbo1+carbo2+carbo3) / my_carbo * 100).toFloat()
-                    protein_percent_oneday = ((protein1+protein2+protein3) / my_protein * 100).toFloat()
-                    fat_percent_oneday = ((fat1+fat2+fat3) / my_fat * 100).toFloat()
+                    carbo_percent_oneday = (round(carbo1+carbo2+carbo3) / my_carbo * 100).toFloat()
+                    protein_percent_oneday = (round(protein1+protein2+protein3) / my_protein * 100).toFloat()
+                    fat_percent_oneday = (round(fat1+fat2+fat3) / my_fat * 100).toFloat()
                     kcal_percent_oneday = ((kcal1+kcal2+kcal3)/my_kcal*100).toFloat()
                 }
                 if(my_carbo != 0.0) {
@@ -371,9 +371,9 @@ class SelectFragment:Fragment() {
                     updatePieChart3(fat_percent_oneday, binding.pieChart3)
                     updatePieChart4(kcal_percent_oneday, binding.pieChart4)
 
-                    binding.chart1Title.text = (carbo1+carbo2+carbo3).toString() + " / " + my_carbo.toString()
-                    binding.chart2Title.text = (protein1+protein2+protein3).toString() + " / " + my_protein.toString()
-                    binding.chart3Title.text = (fat1+fat2+fat3).toString() + " / " + my_fat.toString()
+                    binding.chart1Title.text = round((carbo1+carbo2+carbo3)).toString() + " / " + my_carbo.toString()
+                    binding.chart2Title.text = round((protein1+protein2+protein3)).toString() + " / " + my_protein.toString()
+                    binding.chart3Title.text = round((fat1+fat2+fat3)).toString() + " / " + my_fat.toString()
                     binding.chart4Title.text = (kcal1+kcal2+kcal3).toString() + " / " + my_kcal.toString()
 
                 }
@@ -396,17 +396,17 @@ class SelectFragment:Fragment() {
                 }
                 else {
                     val fir_edit = inputText.toDouble()
-                    var temp = round(fir_edit*second_carbo)
-                    var temp_p = round(fir_edit*second_protein)
-                    var temp_f = round(fir_edit*second_fat)
+                    var temp = fir_edit*second_carbo
+                    var temp_p = fir_edit*second_protein
+                    var temp_f = fir_edit*second_fat
                     var temp_k = fir_edit*second_kcal
                     carbo2 =temp
                     protein2 = temp_p
                     fat2 = temp_f
                     kcal2 = temp_k.toInt()
-                    carbo_percent_oneday = ((carbo1+carbo2+carbo3) / my_carbo * 100).toFloat()
-                    protein_percent_oneday = ((protein1+protein2+protein3) / my_protein * 100).toFloat()
-                    fat_percent_oneday = ((fat1+fat2+fat3) / my_fat * 100).toFloat()
+                    carbo_percent_oneday = (round(carbo1+carbo2+carbo3) / my_carbo * 100).toFloat()
+                    protein_percent_oneday = (round(protein1+protein2+protein3) / my_protein * 100).toFloat()
+                    fat_percent_oneday = (round(fat1+fat2+fat3) / my_fat * 100).toFloat()
                     kcal_percent_oneday = ((kcal1+kcal2+kcal3)/my_kcal*100).toFloat()
                 }
                 if(my_carbo != 0.0) {
@@ -415,9 +415,9 @@ class SelectFragment:Fragment() {
                     updatePieChart3(fat_percent_oneday, binding.pieChart3)
                     updatePieChart4(kcal_percent_oneday, binding.pieChart4)
 
-                    binding.chart1Title.text = (carbo1+carbo2+carbo3).toString() + " / " + my_carbo.toString()
-                    binding.chart2Title.text = (protein1+protein2+protein3).toString() + " / " + my_protein.toString()
-                    binding.chart3Title.text = (fat1+fat2+fat3).toString() + " / " + my_fat.toString()
+                    binding.chart1Title.text = round((carbo1+carbo2+carbo3)).toString() + " / " + my_carbo.toString()
+                    binding.chart2Title.text = round((protein1+protein2+protein3)).toString() + " / " + my_protein.toString()
+                    binding.chart3Title.text = round((fat1+fat2+fat3)).toString() + " / " + my_fat.toString()
                     binding.chart4Title.text = (kcal1+kcal2+kcal3).toString() + " / " + my_kcal.toString()
 
                 }
@@ -450,17 +450,17 @@ class SelectFragment:Fragment() {
                 }
                 else {
                     val fir_edit = inputText.toDouble()
-                    var temp = round(fir_edit*third_carbo)
-                    var temp_p = round(fir_edit*third_protein)
-                    var temp_f = round(fir_edit*third_fat)
+                    var temp = fir_edit*third_carbo
+                    var temp_p = fir_edit*third_protein
+                    var temp_f = fir_edit*third_fat
                     var temp_k = fir_edit*third_kcal
                     carbo3 =temp
                     protein3 = temp_p
                     fat3 = temp_f
                     kcal3 = temp_k.toInt()
-                    carbo_percent_oneday = ((carbo1+carbo2+carbo3) / my_carbo * 100).toFloat()
-                    protein_percent_oneday = ((protein1+protein2+protein3) / my_protein * 100).toFloat()
-                    fat_percent_oneday = ((fat1+fat2+fat3) / my_fat * 100).toFloat()
+                    carbo_percent_oneday = (round(carbo1+carbo2+carbo3) / my_carbo * 100).toFloat()
+                    protein_percent_oneday = (round(protein1+protein2+protein3) / my_protein * 100).toFloat()
+                    fat_percent_oneday = (round(fat1+fat2+fat3) / my_fat * 100).toFloat()
                     kcal_percent_oneday = ((kcal1+kcal2+kcal3)/my_kcal*100).toFloat()
 
                 }
@@ -470,9 +470,9 @@ class SelectFragment:Fragment() {
                     updatePieChart3(fat_percent_oneday, binding.pieChart3)
                     updatePieChart4(kcal_percent_oneday, binding.pieChart4)
 
-                    binding.chart1Title.text = (carbo1+carbo2+carbo3).toString() + " / " + my_carbo.toString()
-                    binding.chart2Title.text = (protein1+protein2+protein3).toString() + " / " + my_protein.toString()
-                    binding.chart3Title.text = (fat1+fat2+fat3).toString() + " / " + my_fat.toString()
+                    binding.chart1Title.text = round((carbo1+carbo2+carbo3)).toString() + " / " + my_carbo.toString()
+                    binding.chart2Title.text = round((protein1+protein2+protein3)).toString() + " / " + my_protein.toString()
+                    binding.chart3Title.text = round((fat1+fat2+fat3)).toString() + " / " + my_fat.toString()
                     binding.chart4Title.text = (kcal1+kcal2+kcal3).toString() + " / " + my_kcal.toString()
 
 
@@ -497,17 +497,17 @@ class SelectFragment:Fragment() {
                 }
                 else {
                     val fir_edit = inputText.toDouble()
-                    var temp = round(fir_edit*third_carbo)
-                    var temp_p = round(fir_edit*third_protein)
-                    var temp_f = round(fir_edit*third_fat)
+                    var temp = fir_edit*third_carbo
+                    var temp_p = fir_edit*third_protein
+                    var temp_f = fir_edit*third_fat
                     var temp_k = fir_edit*third_kcal
                     carbo3 =temp
                     protein3 = temp_p
                     fat3 = temp_f
                     kcal3 = temp_k.toInt()
-                    carbo_percent_oneday = ((carbo1+carbo2+carbo3) / my_carbo * 100).toFloat()
-                    protein_percent_oneday = ((protein1+protein2+protein3) / my_protein * 100).toFloat()
-                    fat_percent_oneday = ((fat1+fat2+fat3) / my_fat * 100).toFloat()
+                    carbo_percent_oneday = (round(carbo1+carbo2+carbo3) / my_carbo * 100).toFloat()
+                    protein_percent_oneday = (round(protein1+protein2+protein3) / my_protein * 100).toFloat()
+                    fat_percent_oneday = (round(fat1+fat2+fat3) / my_fat * 100).toFloat()
                     kcal_percent_oneday = ((kcal1+kcal2+kcal3)/my_kcal*100).toFloat()
 
                 }
@@ -517,9 +517,9 @@ class SelectFragment:Fragment() {
                     updatePieChart3(fat_percent_oneday, binding.pieChart3)
                     updatePieChart4(kcal_percent_oneday, binding.pieChart4)
 
-                    binding.chart1Title.text = (carbo1+carbo2+carbo3).toString() + " / " + my_carbo.toString()
-                    binding.chart2Title.text = (protein1+protein2+protein3).toString() + " / " + my_protein.toString()
-                    binding.chart3Title.text = (fat1+fat2+fat3).toString() + " / " + my_fat.toString()
+                    binding.chart1Title.text = round((carbo1+carbo2+carbo3)).toString() + " / " + my_carbo.toString()
+                    binding.chart2Title.text = round((protein1+protein2+protein3)).toString() + " / " + my_protein.toString()
+                    binding.chart3Title.text = round((fat1+fat2+fat3)).toString() + " / " + my_fat.toString()
                     binding.chart4Title.text = (kcal1+kcal2+kcal3).toString() + " / " + my_kcal.toString()
 
 
