@@ -1,8 +1,11 @@
 package min.bo.recipe.app.ui.select
 
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,9 +15,14 @@ import android.webkit.WebViewClient
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
+import com.github.mikephil.charting.charts.PieChart
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.database.DataSnapshot
@@ -117,6 +125,29 @@ class SelectFragment:Fragment() {
 
 
 
+
+
+        binding.tableGram1.addTextChangedListener(object:TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                val inputText = p0.toString()
+
+                updatePieChart(inputText,binding.pieChart1)
+
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                val inputText = p0.toString()
+                updatePieChart(inputText,binding.pieChart1)
+
+            }
+
+
+        })
+
+
+
         indivisualButton.setOnClickListener{
             val gramInformation1 = gramInformationEditText1.text.toString()
             val gramInformation2 = gramInformationEditText2.text.toString()
@@ -127,7 +158,7 @@ class SelectFragment:Fragment() {
 
 
 
-
+/*
             webView = WebView(requireContext())
 
             webView.settings.javaScriptEnabled =true
@@ -137,7 +168,7 @@ class SelectFragment:Fragment() {
             webView.webViewClient = WebViewClient()
             webView.loadUrl("http://192.168.0.125/page1?salt="+gramInformation1+"&sugar="+gramInformation2+"&blackpepper="+gramInformation3)
 
-
+*/
             //println(gramInformation1)
 
             
@@ -153,6 +184,28 @@ class SelectFragment:Fragment() {
 
 
         }
+
+
+    private fun updatePieChart(inputText: String,pieChart: PieChart) {
+        val value = inputText.toIntOrNull() ?: 0
+        val pieEntries = mutableListOf<PieEntry>()
+
+        if (value in 0..100) {
+            pieEntries.add(PieEntry(value.toFloat()))
+            pieEntries.add(PieEntry((100 - value).toFloat()))
+        } else {
+            pieEntries.add(PieEntry(0f))
+            pieEntries.add(PieEntry(100f))
+        }
+
+        val dataSet = PieDataSet(pieEntries, "Data Set")
+        dataSet.setColors(Color.RED, Color.BLUE)
+        val data = PieData(dataSet)
+        pieChart.data = data
+        pieChart.invalidate()
+    }
+
+
 
     override fun onDestroy() {
         super.onDestroy()

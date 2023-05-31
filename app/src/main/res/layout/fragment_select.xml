@@ -76,88 +76,6 @@
                     app:tabBackground="@drawable/selector_viewpager_indicator" />
 
 
-<!--
-
-                <TextView
-                    android:id="@+id/carbo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/viewpager_select_banner_indicator"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:text="탄수"
-                    android:textSize="10sp"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginTop="20dp"
-                    />
-
-
-                <EditText
-                    android:id="@+id/gram_information1"
-                    android:layout_width="30dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/viewpager_select_banner_indicator"
-                    app:layout_constraintStart_toEndOf="@id/carbo"
-                    android:textSize="20sp"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    android:layout_marginLeft="5dp"
-
-                    />
-
-
-
-                <TextView
-                    android:id="@+id/protein"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/viewpager_select_banner_indicator"
-                    app:layout_constraintStart_toEndOf="@id/gram_information1"
-                    android:text="지방"
-                    android:textSize="10sp"
-
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    />
-
-
-                <EditText
-                    android:id="@+id/gram_information2"
-                    android:layout_width="30dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/viewpager_select_banner_indicator"
-                    app:layout_constraintStart_toEndOf="@id/protein"
-                    android:textSize="20sp"
-                    android:layout_marginLeft="5dp"
-
-                    />
-
-
-
-                <TextView
-                    android:id="@+id/fat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/viewpager_select_banner_indicator"
-                    app:layout_constraintStart_toEndOf="@id/gram_information2"
-                    android:text="단백질"
-                    android:textSize="10sp"
-
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    />
-
-
-                <EditText
-                    android:id="@+id/gram_information3"
-                    android:layout_width="30dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/viewpager_select_banner_indicator"
-                    app:layout_constraintStart_toEndOf="@id/fat"
-                    android:textSize="20sp"
-                    android:layout_marginLeft="5dp"
-
-                    />
-
--->
 
 
                 <TableLayout
@@ -250,6 +168,27 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     android:text="개별출력"
+
+                    />
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/pieChart1"
+                    android:layout_width="120dp"
+                    android:layout_height="150dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/indivisual_print_btn"
+                    android:layout_marginTop="50dp" />
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/pieChart1"
+                    android:layout_marginTop="500dp"
 
                     />
 

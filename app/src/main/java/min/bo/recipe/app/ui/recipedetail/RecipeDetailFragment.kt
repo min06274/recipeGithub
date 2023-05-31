@@ -60,12 +60,52 @@ class RecipeDetailFragment:Fragment() {
 
         setNavigation()
 
+
+        var p1 = "fds"
+
+        var p2 = "fdd"
+
+        var p3 = "fdd"
+
+        val p1Ref = myRef.child("0").child("product_detail").child("brand_name")
+        p1Ref.get().addOnSuccessListener { dataSnapshot ->
+            val p = dataSnapshot.getValue(String::class.java)
+            p1 = p!!.toString()
+            // p1을 처리하는 코드 작성
+        }.addOnFailureListener { exception ->
+            // 예외 처리 코드 작성
+        }
+
+        val p2Ref = myRef.child("1").child("product_detail").child("brand_name")
+        p2Ref.get().addOnSuccessListener { dataSnapshot ->
+            val p = dataSnapshot.getValue(String::class.java)
+            // p1을 처리하는 코드 작성
+            p2 = p!!.toString()
+
+        }.addOnFailureListener { exception ->
+            // 예외 처리 코드 작성
+        }
+
+        val p3Ref = myRef.child("2").child("product_detail").child("brand_name")
+        p3Ref.get().addOnSuccessListener { dataSnapshot ->
+            val p = dataSnapshot.getValue(String::class.java)
+            // p1을 처리하는 코드 작성
+            p3 = p!!.toString()
+
+        }.addOnFailureListener { exception ->
+            // 예외 처리 코드 작성
+        }
+
+
+        Handler(Looper.getMainLooper()).postDelayed({
+
+
         val cartridge1 = requireArguments().getInt(KEY_CARTRIDGE_GRAM1)
         val cartridge2 = requireArguments().getInt(KEY_CARTRIDGE_GRAM2)
         val cartridge3 = requireArguments().getInt(KEY_CARTRIDGE_GRAM3)
 
 
-        binding.printCereals.text = "1번 : " + cartridge1.toString() + "g 2번 : " +cartridge2.toString() + "g 3번 : "+cartridge3.toString() + "g 이 출력됩니다."
+        binding.printCereals.text = p1 +" : "+ cartridge1.toString() +"g\n"+ p2 +" : "+  cartridge2.toString() +"g\n" + p3 +" : "+ cartridge3.toString() + "g 이 출력됩니다."
 
 
 
@@ -90,6 +130,9 @@ class RecipeDetailFragment:Fragment() {
 
 
         val kcal_percent_oneday = (print_kcal/my_kcal*100).toFloat()
+
+
+
 
         binding.chart1Title.text = print_carbo.toString() + " / " + my_carbo.toString()
         binding.chart2Title.text = print_protein.toString() + " / " + my_protein.toString()
@@ -231,7 +274,7 @@ class RecipeDetailFragment:Fragment() {
 
 
         val colors4: ArrayList<Int> = ArrayList()
-        colors4.add(Color.YELLOW)
+        colors4.add(Color.CYAN)
         colors4.add(Color.DKGRAY)
         dataSet4.colors = colors4
 
@@ -251,44 +294,10 @@ class RecipeDetailFragment:Fragment() {
                 @RequiresApi(Build.VERSION_CODES.O)
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
 
-                    var p1 = "fds"
-
-                    var p2 = "fdd"
-
-                    var p3 = "fdd"
-
-                    val p1Ref = myRef.child("0").child("product_detail").child("brand_name")
-                    p1Ref.get().addOnSuccessListener { dataSnapshot ->
-                        val p = dataSnapshot.getValue(String::class.java)
-                        p1 = p!!.toString()
-                        // p1을 처리하는 코드 작성
-                    }.addOnFailureListener { exception ->
-                        // 예외 처리 코드 작성
-                    }
-
-                    val p2Ref = myRef.child("1").child("product_detail").child("brand_name")
-                    p2Ref.get().addOnSuccessListener { dataSnapshot ->
-                        val p = dataSnapshot.getValue(String::class.java)
-                        // p1을 처리하는 코드 작성
-                        p2 = p!!.toString()
-
-                    }.addOnFailureListener { exception ->
-                        // 예외 처리 코드 작성
-                    }
-
-                    val p3Ref = myRef.child("2").child("product_detail").child("brand_name")
-                    p3Ref.get().addOnSuccessListener { dataSnapshot ->
-                        val p = dataSnapshot.getValue(String::class.java)
-                        // p1을 처리하는 코드 작성
-                        p3 = p!!.toString()
-
-                    }.addOnFailureListener { exception ->
-                        // 예외 처리 코드 작성
-                    }
 
 
 
-                    Handler(Looper.getMainLooper()).postDelayed({
+
 
                     val count = dataSnapshot.childrenCount
                     val newLogRef = logRef.child((count).toString())
@@ -339,7 +348,6 @@ class RecipeDetailFragment:Fragment() {
                webView.webViewClient = WebViewClient()
                webView.loadUrl("http://192.168.0.125/page1?salt="+carbo_gram.toString()+"&sugar="+protein_gram.toString()+"&blackpepper="+fat_gram.toString())
 */
-                    }, 3000)
 
                 }
 
@@ -350,7 +358,10 @@ class RecipeDetailFragment:Fragment() {
 
         }
 
-    }
+
+    }, 3000)
+
+}
 
     private fun setNavigation(){
         binding.toolbarRecipeDetail.setNavigationOnClickListener {
