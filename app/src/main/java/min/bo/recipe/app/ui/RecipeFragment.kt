@@ -12,6 +12,7 @@ import android.webkit.WebViewClient
 import android.widget.*
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -21,6 +22,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.*
 import min.bo.recipe.app.R
 import min.bo.recipe.app.common.*
+import min.bo.recipe.app.ui.select.SelectFragment
 import java.math.BigDecimal
 import kotlin.concurrent.thread
 import kotlin.math.abs
@@ -330,6 +332,15 @@ class RecipeFragment: Fragment() {
 
                 //gramText.text = "1번 : " +carbo_gram.toString() +"g | 2번 : " +protein_gram.toString() + "g | 3번 : " +fat_gram.toString()+"g"
 
+                // 버튼을 누르면, 전달될 값
+                setFragmentResult("requestKey",
+                    bundleOf(KEY_TOTAL_KCAL to result_to, KEY_FIRST_CARBO to first_cereal[1],
+                        KEY_SECOND_CARBO to second_cereal[1], KEY_THIRD_CARBO to third_cereal[1],
+                        KEY_FIRST_PROTEIN to first_cereal[2] , KEY_SECOND_PROTEIN to second_cereal[2],
+                        KEY_THIRD_PROTEIN to third_cereal[2], KEY_FIRST_FAT to first_cereal[3] , KEY_SECOND_FAT to second_cereal[3],
+                        KEY_THIRD_FAT to third_cereal[3]
+                ))
+
 
                 openRecipeDetail(first_gram,second_gram,third_gram,carbo_gram,protein_gram,fat_gram,total_kcal,result_to)
 
@@ -347,6 +358,9 @@ class RecipeFragment: Fragment() {
 
         }
     }
+
+
+
 
     private fun openRecipeDetail(first_gram:Int,second_gram:Int,third_gram:Int,carbo_gram:Double,protein_gram:Double,fat_gram:Double,print_kcal:Int,total_kcal:Double){
         findNavController().navigate(R.id.action_recipe_to_recipe_detail, bundleOf(

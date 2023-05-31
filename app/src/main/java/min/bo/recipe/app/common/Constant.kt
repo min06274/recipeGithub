@@ -41,3 +41,14 @@ const val KEY_KCAL_PERCENT = "kcal_percent"
 
 
 
+const val KEY_FIRST_CARBO = "first_carbo"
+const val KEY_SECOND_CARBO = "secnod_carbo"
+const val KEY_THIRD_CARBO = "third_carbo"
+
+const val KEY_FIRST_PROTEIN = "first_protein"
+const val KEY_SECOND_PROTEIN = "secnod_protein"
+const val KEY_THIRD_PROTEIN = "third_protein"
+
+const val KEY_FIRST_FAT = "first_fat"
+const val KEY_SECOND_FAT = "secnod_fat"
+const val KEY_THIRD_FAT = "third_fat"
