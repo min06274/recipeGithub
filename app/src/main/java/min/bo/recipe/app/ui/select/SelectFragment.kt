@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -17,6 +18,7 @@ import android.webkit.WebViewClient
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
@@ -38,7 +40,11 @@ import com.google.firebase.ktx.Firebase
 import min.bo.recipe.app.R
 import min.bo.recipe.app.common.*
 import min.bo.recipe.app.databinding.FragmentSelectBinding
+import min.bo.recipe.app.model.LogData
 import min.bo.recipe.app.ui.common.ViewModelFactory
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import kotlin.concurrent.thread
 import kotlin.math.round
 
@@ -50,6 +56,9 @@ class SelectFragment:Fragment() {
 
     val database1 = Firebase.database("https://cereal-22a02-default-rtdb.asia-southeast1.firebasedatabase.app/")
     val myRef = database1.getReference("top_banners")
+
+    private val database2 = Firebase.database("https://cereal-22a02-default-rtdb.asia-southeast1.firebasedatabase.app/")
+    private val logRef = database2.getReference("log_list")
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -66,7 +75,11 @@ class SelectFragment:Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.lifecycleOwner = viewLifecycleOwner
+        var p1 = "0"
 
+        var p2 = "0"
+
+        var p3 = "0"
         setToolBar()
 
 
@@ -95,6 +108,7 @@ class SelectFragment:Fragment() {
             ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val brandName = dataSnapshot.getValue(String::class.java)
+                p1=brandName.toString()
                 cereal1.text = brandName
             }
 
@@ -108,6 +122,8 @@ class SelectFragment:Fragment() {
             ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val brandName = dataSnapshot.getValue(String::class.java)
+                p2=brandName.toString()
+
                 cereal2.text = brandName
             }
 
@@ -120,6 +136,8 @@ class SelectFragment:Fragment() {
             ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val brandName = dataSnapshot.getValue(String::class.java)
+                p3=brandName.toString()
+
                 cereal3.text = brandName
             }
 
@@ -169,8 +187,8 @@ class SelectFragment:Fragment() {
             third_carbo = bundle.getDouble(KEY_THIRD_CARBO)
 
             first_protein = bundle.getDouble(KEY_FIRST_PROTEIN)
-            second_protein = bundle.getDouble(KEY_FIRST_PROTEIN)
-            third_protein = bundle.getDouble(KEY_FIRST_PROTEIN)
+            second_protein = bundle.getDouble(KEY_SECOND_PROTEIN)
+            third_protein = bundle.getDouble(KEY_THIRD_PROTEIN)
 
             first_fat = bundle.getDouble(KEY_FIRST_FAT)
             second_fat = bundle.getDouble(KEY_SECOND_FAT)
@@ -181,9 +199,15 @@ class SelectFragment:Fragment() {
             second_kcal = bundle.getInt(KEY_SECOND_KCAL)
             third_kcal = bundle.getInt(KEY_THIRD_KCAL)
 
+            println("dldldldldldl")
+            println(first_protein)
+            println(second_protein)
+            println(third_protein)
 
 
         }
+
+
 
         var carbo1 = 0.0
         var carbo2 = 0.0
@@ -199,14 +223,17 @@ class SelectFragment:Fragment() {
         var kcal1= 0
         var kcal2= 0
         var kcal3 =0
+
+        var carbo_percent_oneday = 0f
+        var protein_percent_oneday = 0f
+        var fat_percent_oneday = 0f
+        var kcal_percent_oneday = 0f
+
         binding.tableGram1.addTextChangedListener(object:TextWatcher{
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                var carbo_percent_oneday = 0f
-                var protein_percent_oneday = 0f
-                var fat_percent_oneday = 0f
-                var kcal_percent_oneday = 0f
+
                 val inputText = p0.toString()
                 if(inputText.isNullOrEmpty())
                 {
@@ -235,6 +262,7 @@ class SelectFragment:Fragment() {
                     fat_percent_oneday = ((fat1+fat2+fat3) / my_fat * 100).toFloat()
                     kcal_percent_oneday = ((kcal1+kcal2+kcal3) / my_kcal *100).toFloat()
 
+                    println(protein1+protein2+protein3)
                 }
                 if(my_carbo != 0.0) {
                     updatePieChart1(carbo_percent_oneday, binding.pieChart1)
@@ -252,10 +280,7 @@ class SelectFragment:Fragment() {
             }
 
             override fun afterTextChanged(p0: Editable?) {
-                var carbo_percent_oneday = 0f
-                var protein_percent_oneday = 0f
-                var fat_percent_oneday = 0f
-                var kcal_percent_oneday = 0f
+
                 val inputText = p0.toString()
                 if(inputText.isNullOrEmpty())
                 {
@@ -283,6 +308,7 @@ class SelectFragment:Fragment() {
                     protein_percent_oneday = ((protein1+protein2+protein3) / my_protein * 100).toFloat()
                     fat_percent_oneday = ((fat1+fat2+fat3) / my_fat * 100).toFloat()
                     kcal_percent_oneday = ((kcal1+kcal2+kcal3) / my_kcal *100).toFloat()
+                    println(protein1+protein2+protein3)
 
                 }
                 if(my_carbo != 0.0) {
@@ -310,10 +336,7 @@ class SelectFragment:Fragment() {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                var carbo_percent_oneday = 0f
-                var protein_percent_oneday = 0f
-                var fat_percent_oneday = 0f
-                var kcal_percent_oneday = 0f
+
                 val inputText = p0.toString()
                 if(inputText.isNullOrEmpty())
                 {
@@ -357,10 +380,7 @@ class SelectFragment:Fragment() {
             }
 
             override fun afterTextChanged(p0: Editable?) {
-                var carbo_percent_oneday = 0f
-                var protein_percent_oneday = 0f
-                var fat_percent_oneday = 0f
-                var kcal_percent_oneday = 0f
+
                 val inputText = p0.toString()
                 if(inputText.isNullOrEmpty())
                 {
@@ -413,10 +433,7 @@ class SelectFragment:Fragment() {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                var carbo_percent_oneday = 0f
-                var protein_percent_oneday = 0f
-                var fat_percent_oneday = 0f
-                var kcal_percent_oneday = 0f
+
                 val inputText = p0.toString()
                 if(inputText.isNullOrEmpty())
                 {
@@ -463,10 +480,7 @@ class SelectFragment:Fragment() {
             }
 
             override fun afterTextChanged(p0: Editable?) {
-                var carbo_percent_oneday = 0f
-                var protein_percent_oneday = 0f
-                var fat_percent_oneday = 0f
-                var kcal_percent_oneday = 0f
+
                 val inputText = p0.toString()
                 if(inputText.isNullOrEmpty())
                 {
@@ -521,6 +535,64 @@ class SelectFragment:Fragment() {
             val gramInformation1 = gramInformationEditText1.text.toString()
             val gramInformation2 = gramInformationEditText2.text.toString()
             val gramInformation3 = gramInformationEditText3.text.toString()
+
+
+            logRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                @RequiresApi(Build.VERSION_CODES.O)
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+
+
+
+
+
+                    val count = dataSnapshot.childrenCount
+                    val newLogRef = logRef.child((count).toString())
+
+                    var now = LocalDate.now()
+                    var Strnow = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+                    val currentTime = LocalDateTime.now()
+                    val formatter = DateTimeFormatter.ofPattern("HH:mm")
+                    val formattedTime = currentTime.format(formatter).toString()
+
+
+                    val newLog = LogData(
+                        date = Strnow,
+                        time = formattedTime,
+                        cartridge1 = p1,
+                        cartridge2 = p2,
+                        cartridge3 = p3,
+                        cartridge_gram1 = gramInformation1,
+                        cartridge_gram2 = gramInformation2,
+                        cartridge_gram3 = gramInformation3,
+                        carbo_gram = (carbo1+carbo2+carbo3).toString(),
+                        protein_gram =(protein1+protein2+protein3).toString(),
+                        fat_gram = (fat1+fat2+fat3).toString(),
+                        my_carbo_gram = my_carbo.toString(),
+                        my_protein_gram = my_protein.toString(),
+                        my_fat_gram = my_fat.toString(),
+                        carbo_percent = carbo_percent_oneday.toString(),
+                        protein_percent = protein_percent_oneday.toString(),
+                        fat_percent = fat_percent_oneday.toString(),
+                        print_kcal = (kcal1+kcal2+kcal3).toString(),
+                        total_kcal = my_kcal.toString(),
+                        kcal_percent = kcal_percent_oneday.toString(),
+                        log_id = count.toString()
+
+                    )
+
+                    newLogRef.setValue(newLog)
+
+
+
+
+
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    println("Failed to read cereals")
+                }
+            })
 
 
 

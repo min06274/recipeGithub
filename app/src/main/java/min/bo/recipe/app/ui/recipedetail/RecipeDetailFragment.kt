@@ -288,8 +288,6 @@ class RecipeDetailFragment:Fragment() {
         binding.addLogBtn.setOnClickListener{
 
 
-
-
             logRef.addListenerForSingleValueEvent(object : ValueEventListener {
                 @RequiresApi(Build.VERSION_CODES.O)
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -355,6 +353,17 @@ class RecipeDetailFragment:Fragment() {
                     println("Failed to read cereals")
                 }
             })
+
+            /*
+webView = WebView(requireContext())
+
+webView.settings.javaScriptEnabled =true
+
+webView.settings.cacheMode = WebSettings.LOAD_NO_CACHE
+
+webView.webViewClient = WebViewClient()
+webView.loadUrl("http://192.168.0.125/page1?salt="+carbo_gram.toString()+"&sugar="+protein_gram.toString()+"&blackpepper="+fat_gram.toString())
+*/
 
         }
 
