@@ -480,11 +480,15 @@
       "carbo_gram": "20",
       "protein_gram": "21",
       "fat_gram": "22",
+      "my_carbo_gram": "20",
+      "my_protein_gram": "20",
+      "my_fat_gram": "20",
       "carbo_percent": "30%",
       "protein_percent": "31%",
       "fat_percent": "32%",
       "print_kcal" : "250",
       "total_kcal": "1800",
+      "kcal_percent": "22%",
       "log_id": "0"
     }
   ]

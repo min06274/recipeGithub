@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import min.bo.recipe.app.common.KEY_CARBO_PERCENT
+import min.bo.recipe.app.common.KEY_CARTRIDGE_NAME1
 import min.bo.recipe.app.common.KEY_LOG_DATE
 import min.bo.recipe.app.databinding.FragmentLogDetailBinding
 
@@ -29,6 +31,11 @@ class LogDetailFragment: Fragment() {
         setNavigation()
 
         binding.toolbarLogDetail.title = requireArguments().getString(KEY_LOG_DATE)
+
+
+        println(requireArguments().getString(KEY_CARTRIDGE_NAME1))
+
+        println(requireArguments().getString(KEY_CARBO_PERCENT))
     }
 
 

@@ -4,6 +4,8 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,7 +36,8 @@ import kotlin.math.round
 
 class RecipeDetailFragment:Fragment() {
 
-
+    private val database = Firebase.database("https://cereal-22a02-default-rtdb.asia-southeast1.firebasedatabase.app/")
+    private val myRef = database.getReference("top_banners")
 
     private val database1 = Firebase.database("https://cereal-22a02-default-rtdb.asia-southeast1.firebasedatabase.app/")
     private val logRef = database1.getReference("log_list")
@@ -241,9 +244,51 @@ class RecipeDetailFragment:Fragment() {
 
         binding.addLogBtn.setOnClickListener{
 
+
+
+
             logRef.addListenerForSingleValueEvent(object : ValueEventListener {
                 @RequiresApi(Build.VERSION_CODES.O)
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                    var p1 = "fds"
+
+                    var p2 = "fdd"
+
+                    var p3 = "fdd"
+
+                    val p1Ref = myRef.child("0").child("product_detail").child("brand_name")
+                    p1Ref.get().addOnSuccessListener { dataSnapshot ->
+                        val p = dataSnapshot.getValue(String::class.java)
+                        p1 = p!!.toString()
+                        // p1을 처리하는 코드 작성
+                    }.addOnFailureListener { exception ->
+                        // 예외 처리 코드 작성
+                    }
+
+                    val p2Ref = myRef.child("1").child("product_detail").child("brand_name")
+                    p2Ref.get().addOnSuccessListener { dataSnapshot ->
+                        val p = dataSnapshot.getValue(String::class.java)
+                        // p1을 처리하는 코드 작성
+                        p2 = p!!.toString()
+
+                    }.addOnFailureListener { exception ->
+                        // 예외 처리 코드 작성
+                    }
+
+                    val p3Ref = myRef.child("2").child("product_detail").child("brand_name")
+                    p3Ref.get().addOnSuccessListener { dataSnapshot ->
+                        val p = dataSnapshot.getValue(String::class.java)
+                        // p1을 처리하는 코드 작성
+                        p3 = p!!.toString()
+
+                    }.addOnFailureListener { exception ->
+                        // 예외 처리 코드 작성
+                    }
+
+
+
+                    Handler(Looper.getMainLooper()).postDelayed({
 
                     val count = dataSnapshot.childrenCount
                     val newLogRef = logRef.child((count).toString())
@@ -257,26 +302,44 @@ class RecipeDetailFragment:Fragment() {
                     val newLog = LogData(
                         date = Strnow,
                         time = formattedTime,
-                        cartridge1 = "1",
-                        cartridge2 = "1",
-                        cartridge3 = "1",
-                        cartridge_gram1 = "1",
-                        cartridge_gram2 = "1",
-                        cartridge_gram3 = "1",
-                        carbo_gram = "1",
-                        protein_gram = "1",
-                        fat_gram = "1",
-                        carbo_percent = "1%",
-                        protein_percent = "2%",
-                        fat_percent = "3%",
-                        print_kcal = "250",
-                        total_kcal = "1800",
+                        cartridge1 = p1,
+                        cartridge2 = p2,
+                        cartridge3 = p3,
+                        cartridge_gram1 = cartridge1.toString(),
+                        cartridge_gram2 = cartridge2.toString(),
+                        cartridge_gram3 = cartridge3.toString(),
+                        carbo_gram = print_carbo.toString(),
+                        protein_gram = print_protein.toString(),
+                        fat_gram = print_fat.toString(),
+                        my_carbo_gram = my_carbo.toString(),
+                        my_protein_gram = my_protein.toString(),
+                        my_fat_gram = my_fat.toString(),
+                        carbo_percent = carbo_percent_oneday.toString(),
+                        protein_percent = proetein_percent_oneday.toString(),
+                        fat_percent = fat_percent_oneday.toString(),
+                        print_kcal = print_kcal.toString(),
+                        total_kcal = my_kcal.toString(),
+                        kcal_percent = kcal_percent_oneday.toString(),
                         log_id = count.toString()
 
                     )
 
                     newLogRef.setValue(newLog)
 
+
+
+
+                    /*
+               webView = WebView(requireContext())
+
+               webView.settings.javaScriptEnabled =true
+
+               webView.settings.cacheMode = WebSettings.LOAD_NO_CACHE
+
+               webView.webViewClient = WebViewClient()
+               webView.loadUrl("http://192.168.0.125/page1?salt="+carbo_gram.toString()+"&sugar="+protein_gram.toString()+"&blackpepper="+fat_gram.toString())
+*/
+                    }, 3000)
 
                 }
 
