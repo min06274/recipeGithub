@@ -52,3 +52,7 @@ const val KEY_THIRD_PROTEIN = "third_protein"
 const val KEY_FIRST_FAT = "first_fat"
 const val KEY_SECOND_FAT = "secnod_fat"
 const val KEY_THIRD_FAT = "third_fat"
+
+const val KEY_FIRST_KCAL = "first_kcal"
+const val KEY_SECOND_KCAL = "second_kcal"
+const val KEY_THIRD_KCAL = "third_kcal"

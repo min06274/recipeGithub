@@ -338,7 +338,8 @@ class RecipeFragment: Fragment() {
                         KEY_SECOND_CARBO to second_cereal[1], KEY_THIRD_CARBO to third_cereal[1],
                         KEY_FIRST_PROTEIN to first_cereal[2] , KEY_SECOND_PROTEIN to second_cereal[2],
                         KEY_THIRD_PROTEIN to third_cereal[2], KEY_FIRST_FAT to first_cereal[3] , KEY_SECOND_FAT to second_cereal[3],
-                        KEY_THIRD_FAT to third_cereal[3]
+                        KEY_THIRD_FAT to third_cereal[3], KEY_FIRST_KCAL to first_cereal[0], KEY_SECOND_KCAL to second_cereal[0],
+                        KEY_THIRD_KCAL to third_cereal[0]
                 ))
 
 

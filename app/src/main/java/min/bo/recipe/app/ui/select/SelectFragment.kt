@@ -150,6 +150,10 @@ class SelectFragment:Fragment() {
         var second_fat = 0.0
         var third_fat = 0.0
 
+        var first_kcal = 0
+        var second_kcal = 0
+        var third_kcal = 0
+
 
         setFragmentResultListener("requestKey") { requestKey, bundle ->
             //결과 값을 받는곳입니다.
@@ -171,14 +175,12 @@ class SelectFragment:Fragment() {
             first_fat = bundle.getDouble(KEY_FIRST_FAT)
             second_fat = bundle.getDouble(KEY_SECOND_FAT)
             third_fat = bundle.getDouble(KEY_THIRD_FAT)
-            println("fsfd")
-            println(my_carbo)
-            println(my_protein)
-            println(my_fat)
 
-            println(first_fat)
-            println(second_fat)
-            println(third_fat)
+
+            first_kcal = bundle.getInt(KEY_FIRST_KCAL)
+            second_kcal = bundle.getInt(KEY_SECOND_KCAL)
+            third_kcal = bundle.getInt(KEY_THIRD_KCAL)
+
 
 
         }
@@ -194,6 +196,9 @@ class SelectFragment:Fragment() {
         var fat3 = 0.0
 
 
+        var kcal1= 0
+        var kcal2= 0
+        var kcal3 =0
         binding.tableGram1.addTextChangedListener(object:TextWatcher{
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
@@ -201,16 +206,18 @@ class SelectFragment:Fragment() {
                 var carbo_percent_oneday = 0f
                 var protein_percent_oneday = 0f
                 var fat_percent_oneday = 0f
+                var kcal_percent_oneday = 0f
                 val inputText = p0.toString()
                 if(inputText.isNullOrEmpty())
                 {
                     carbo1 = 0.0
                     protein1 = 0.0
                     fat1 =0.0
+                    kcal1 = 0
                     carbo_percent_oneday = ((carbo1+carbo2+carbo3) / my_carbo * 100).toFloat()
                     protein_percent_oneday = ((protein1+protein2+protein3) / my_protein * 100).toFloat()
                     fat_percent_oneday = ((fat1+fat2+fat3) / my_fat * 100).toFloat()
-
+                    kcal_percent_oneday = ((kcal1+kcal2+kcal3) / my_kcal *100).toFloat()
 
                 }
                 else {
@@ -218,19 +225,27 @@ class SelectFragment:Fragment() {
                     var temp = round(fir_edit*first_carbo)
                     var temp_p = round(fir_edit*first_protein)
                     var temp_f = round(fir_edit*first_fat)
+                    var temp_k = fir_edit*first_kcal
                     carbo1 =temp
                     protein1 = temp_p
                     fat1 = temp_f
+                    kcal1 = temp_k.toInt()
                     carbo_percent_oneday = ((carbo1+carbo2+carbo3) / my_carbo * 100).toFloat()
                     protein_percent_oneday = ((protein1+protein2+protein3) / my_protein * 100).toFloat()
                     fat_percent_oneday = ((fat1+fat2+fat3) / my_fat * 100).toFloat()
-                    println(carbo1+carbo2+carbo3)
+                    kcal_percent_oneday = ((kcal1+kcal2+kcal3) / my_kcal *100).toFloat()
 
                 }
                 if(my_carbo != 0.0) {
                     updatePieChart1(carbo_percent_oneday, binding.pieChart1)
                     updatePieChart2(protein_percent_oneday, binding.pieChart2)
                     updatePieChart3(fat_percent_oneday, binding.pieChart3)
+                    updatePieChart4(kcal_percent_oneday, binding.pieChart4)
+
+                    binding.chart1Title.text = (carbo1+carbo2+carbo3).toString() + " / " + my_carbo.toString()
+                    binding.chart2Title.text = (protein1+protein2+protein3).toString() + " / " + my_protein.toString()
+                    binding.chart3Title.text = (fat1+fat2+fat3).toString() + " / " + my_fat.toString()
+                    binding.chart4Title.text = (kcal1+kcal2+kcal3).toString() + " / " + my_kcal.toString()
 
 
                 }
@@ -240,16 +255,18 @@ class SelectFragment:Fragment() {
                 var carbo_percent_oneday = 0f
                 var protein_percent_oneday = 0f
                 var fat_percent_oneday = 0f
+                var kcal_percent_oneday = 0f
                 val inputText = p0.toString()
                 if(inputText.isNullOrEmpty())
                 {
                     carbo1 = 0.0
                     protein1 = 0.0
                     fat1 =0.0
+                    kcal1 = 0
                     carbo_percent_oneday = ((carbo1+carbo2+carbo3) / my_carbo * 100).toFloat()
                     protein_percent_oneday = ((protein1+protein2+protein3) / my_protein * 100).toFloat()
                     fat_percent_oneday = ((fat1+fat2+fat3) / my_fat * 100).toFloat()
-
+                    kcal_percent_oneday = ((kcal1+kcal2+kcal3) / my_kcal *100).toFloat()
 
                 }
                 else {
@@ -257,20 +274,27 @@ class SelectFragment:Fragment() {
                     var temp = round(fir_edit*first_carbo)
                     var temp_p = round(fir_edit*first_protein)
                     var temp_f = round(fir_edit*first_fat)
+                    var temp_k = fir_edit*first_kcal
                     carbo1 =temp
                     protein1 = temp_p
                     fat1 = temp_f
+                    kcal1 = temp_k.toInt()
                     carbo_percent_oneday = ((carbo1+carbo2+carbo3) / my_carbo * 100).toFloat()
                     protein_percent_oneday = ((protein1+protein2+protein3) / my_protein * 100).toFloat()
                     fat_percent_oneday = ((fat1+fat2+fat3) / my_fat * 100).toFloat()
-                    println(carbo1+carbo2+carbo3)
-
+                    kcal_percent_oneday = ((kcal1+kcal2+kcal3) / my_kcal *100).toFloat()
 
                 }
                 if(my_carbo != 0.0) {
                     updatePieChart1(carbo_percent_oneday, binding.pieChart1)
                     updatePieChart2(protein_percent_oneday, binding.pieChart2)
                     updatePieChart3(fat_percent_oneday, binding.pieChart3)
+                    updatePieChart4(kcal_percent_oneday, binding.pieChart4)
+
+                    binding.chart1Title.text = (carbo1+carbo2+carbo3).toString() + " / " + my_carbo.toString()
+                    binding.chart2Title.text = (protein1+protein2+protein3).toString() + " / " + my_protein.toString()
+                    binding.chart3Title.text = (fat1+fat2+fat3).toString() + " / " + my_fat.toString()
+                    binding.chart4Title.text = (kcal1+kcal2+kcal3).toString() + " / " + my_kcal.toString()
 
 
                 }
@@ -289,16 +313,18 @@ class SelectFragment:Fragment() {
                 var carbo_percent_oneday = 0f
                 var protein_percent_oneday = 0f
                 var fat_percent_oneday = 0f
+                var kcal_percent_oneday = 0f
                 val inputText = p0.toString()
                 if(inputText.isNullOrEmpty())
                 {
                     carbo2 = 0.0
                     protein2 = 0.0
                     fat2 =0.0
+                    kcal2 = 0
                     carbo_percent_oneday = ((carbo1+carbo2+carbo3) / my_carbo * 100).toFloat()
                     protein_percent_oneday = ((protein1+protein2+protein3) / my_protein * 100).toFloat()
                     fat_percent_oneday = ((fat1+fat2+fat3) / my_fat * 100).toFloat()
-
+                    kcal_percent_oneday = ((kcal1+kcal2+kcal3)/my_kcal*100).toFloat()
 
                 }
                 else {
@@ -306,20 +332,26 @@ class SelectFragment:Fragment() {
                     var temp = round(fir_edit*second_carbo)
                     var temp_p = round(fir_edit*second_protein)
                     var temp_f = round(fir_edit*second_fat)
+                    var temp_k = fir_edit*second_kcal
                     carbo2 =temp
                     protein2 = temp_p
                     fat2 = temp_f
+                    kcal2 = temp_k.toInt()
                     carbo_percent_oneday = ((carbo1+carbo2+carbo3) / my_carbo * 100).toFloat()
                     protein_percent_oneday = ((protein1+protein2+protein3) / my_protein * 100).toFloat()
                     fat_percent_oneday = ((fat1+fat2+fat3) / my_fat * 100).toFloat()
-                    println(carbo2)
-                    println(carbo3)
+                    kcal_percent_oneday = ((kcal1+kcal2+kcal3)/my_kcal*100).toFloat()
                 }
                 if(my_carbo != 0.0) {
                     updatePieChart1(carbo_percent_oneday, binding.pieChart1)
                     updatePieChart2(protein_percent_oneday, binding.pieChart2)
                     updatePieChart3(fat_percent_oneday, binding.pieChart3)
+                    updatePieChart4(kcal_percent_oneday, binding.pieChart4)
 
+                    binding.chart1Title.text = (carbo1+carbo2+carbo3).toString() + " / " + my_carbo.toString()
+                    binding.chart2Title.text = (protein1+protein2+protein3).toString() + " / " + my_protein.toString()
+                    binding.chart3Title.text = (fat1+fat2+fat3).toString() + " / " + my_fat.toString()
+                    binding.chart4Title.text = (kcal1+kcal2+kcal3).toString() + " / " + my_kcal.toString()
 
                 }
             }
@@ -328,16 +360,18 @@ class SelectFragment:Fragment() {
                 var carbo_percent_oneday = 0f
                 var protein_percent_oneday = 0f
                 var fat_percent_oneday = 0f
+                var kcal_percent_oneday = 0f
                 val inputText = p0.toString()
                 if(inputText.isNullOrEmpty())
                 {
                     carbo2 = 0.0
                     protein2 = 0.0
                     fat2 =0.0
+                    kcal2 = 0
                     carbo_percent_oneday = ((carbo1+carbo2+carbo3) / my_carbo * 100).toFloat()
                     protein_percent_oneday = ((protein1+protein2+protein3) / my_protein * 100).toFloat()
                     fat_percent_oneday = ((fat1+fat2+fat3) / my_fat * 100).toFloat()
-
+                    kcal_percent_oneday = ((kcal1+kcal2+kcal3)/my_kcal*100).toFloat()
 
                 }
                 else {
@@ -345,21 +379,26 @@ class SelectFragment:Fragment() {
                     var temp = round(fir_edit*second_carbo)
                     var temp_p = round(fir_edit*second_protein)
                     var temp_f = round(fir_edit*second_fat)
+                    var temp_k = fir_edit*second_kcal
                     carbo2 =temp
                     protein2 = temp_p
                     fat2 = temp_f
+                    kcal2 = temp_k.toInt()
                     carbo_percent_oneday = ((carbo1+carbo2+carbo3) / my_carbo * 100).toFloat()
                     protein_percent_oneday = ((protein1+protein2+protein3) / my_protein * 100).toFloat()
                     fat_percent_oneday = ((fat1+fat2+fat3) / my_fat * 100).toFloat()
-                    println(carbo2)
-                    println(carbo3)
-
+                    kcal_percent_oneday = ((kcal1+kcal2+kcal3)/my_kcal*100).toFloat()
                 }
                 if(my_carbo != 0.0) {
                     updatePieChart1(carbo_percent_oneday, binding.pieChart1)
                     updatePieChart2(protein_percent_oneday, binding.pieChart2)
                     updatePieChart3(fat_percent_oneday, binding.pieChart3)
+                    updatePieChart4(kcal_percent_oneday, binding.pieChart4)
 
+                    binding.chart1Title.text = (carbo1+carbo2+carbo3).toString() + " / " + my_carbo.toString()
+                    binding.chart2Title.text = (protein1+protein2+protein3).toString() + " / " + my_protein.toString()
+                    binding.chart3Title.text = (fat1+fat2+fat3).toString() + " / " + my_fat.toString()
+                    binding.chart4Title.text = (kcal1+kcal2+kcal3).toString() + " / " + my_kcal.toString()
 
                 }
             }
@@ -377,15 +416,18 @@ class SelectFragment:Fragment() {
                 var carbo_percent_oneday = 0f
                 var protein_percent_oneday = 0f
                 var fat_percent_oneday = 0f
+                var kcal_percent_oneday = 0f
                 val inputText = p0.toString()
                 if(inputText.isNullOrEmpty())
                 {
                     carbo3 = 0.0
                     protein3 = 0.0
                     fat3 =0.0
+                    kcal3 = 0
                     carbo_percent_oneday = ((carbo1+carbo2+carbo3) / my_carbo * 100).toFloat()
                     protein_percent_oneday = ((protein1+protein2+protein3) / my_protein * 100).toFloat()
                     fat_percent_oneday = ((fat1+fat2+fat3) / my_fat * 100).toFloat()
+                    kcal_percent_oneday = ((kcal1+kcal2+kcal3)/my_kcal*100).toFloat()
 
 
                 }
@@ -394,19 +436,27 @@ class SelectFragment:Fragment() {
                     var temp = round(fir_edit*third_carbo)
                     var temp_p = round(fir_edit*third_protein)
                     var temp_f = round(fir_edit*third_fat)
+                    var temp_k = fir_edit*third_kcal
                     carbo3 =temp
                     protein3 = temp_p
                     fat3 = temp_f
+                    kcal3 = temp_k.toInt()
                     carbo_percent_oneday = ((carbo1+carbo2+carbo3) / my_carbo * 100).toFloat()
                     protein_percent_oneday = ((protein1+protein2+protein3) / my_protein * 100).toFloat()
                     fat_percent_oneday = ((fat1+fat2+fat3) / my_fat * 100).toFloat()
-                    println(carbo2)
-                    println(carbo3)
+                    kcal_percent_oneday = ((kcal1+kcal2+kcal3)/my_kcal*100).toFloat()
+
                 }
                 if(my_carbo != 0.0) {
                     updatePieChart1(carbo_percent_oneday, binding.pieChart1)
                     updatePieChart2(protein_percent_oneday, binding.pieChart2)
                     updatePieChart3(fat_percent_oneday, binding.pieChart3)
+                    updatePieChart4(kcal_percent_oneday, binding.pieChart4)
+
+                    binding.chart1Title.text = (carbo1+carbo2+carbo3).toString() + " / " + my_carbo.toString()
+                    binding.chart2Title.text = (protein1+protein2+protein3).toString() + " / " + my_protein.toString()
+                    binding.chart3Title.text = (fat1+fat2+fat3).toString() + " / " + my_fat.toString()
+                    binding.chart4Title.text = (kcal1+kcal2+kcal3).toString() + " / " + my_kcal.toString()
 
 
                 }
@@ -416,15 +466,18 @@ class SelectFragment:Fragment() {
                 var carbo_percent_oneday = 0f
                 var protein_percent_oneday = 0f
                 var fat_percent_oneday = 0f
+                var kcal_percent_oneday = 0f
                 val inputText = p0.toString()
                 if(inputText.isNullOrEmpty())
                 {
                     carbo3 = 0.0
                     protein3 = 0.0
                     fat3 =0.0
+                    kcal3 = 0
                     carbo_percent_oneday = ((carbo1+carbo2+carbo3) / my_carbo * 100).toFloat()
                     protein_percent_oneday = ((protein1+protein2+protein3) / my_protein * 100).toFloat()
                     fat_percent_oneday = ((fat1+fat2+fat3) / my_fat * 100).toFloat()
+                    kcal_percent_oneday = ((kcal1+kcal2+kcal3)/my_kcal*100).toFloat()
 
 
                 }
@@ -433,19 +486,27 @@ class SelectFragment:Fragment() {
                     var temp = round(fir_edit*third_carbo)
                     var temp_p = round(fir_edit*third_protein)
                     var temp_f = round(fir_edit*third_fat)
+                    var temp_k = fir_edit*third_kcal
                     carbo3 =temp
                     protein3 = temp_p
                     fat3 = temp_f
+                    kcal3 = temp_k.toInt()
                     carbo_percent_oneday = ((carbo1+carbo2+carbo3) / my_carbo * 100).toFloat()
                     protein_percent_oneday = ((protein1+protein2+protein3) / my_protein * 100).toFloat()
                     fat_percent_oneday = ((fat1+fat2+fat3) / my_fat * 100).toFloat()
-                    println(carbo2)
-                    println(carbo3)
+                    kcal_percent_oneday = ((kcal1+kcal2+kcal3)/my_kcal*100).toFloat()
+
                 }
                 if(my_carbo != 0.0) {
                     updatePieChart1(carbo_percent_oneday, binding.pieChart1)
                     updatePieChart2(protein_percent_oneday, binding.pieChart2)
                     updatePieChart3(fat_percent_oneday, binding.pieChart3)
+                    updatePieChart4(kcal_percent_oneday, binding.pieChart4)
+
+                    binding.chart1Title.text = (carbo1+carbo2+carbo3).toString() + " / " + my_carbo.toString()
+                    binding.chart2Title.text = (protein1+protein2+protein3).toString() + " / " + my_protein.toString()
+                    binding.chart3Title.text = (fat1+fat2+fat3).toString() + " / " + my_fat.toString()
+                    binding.chart4Title.text = (kcal1+kcal2+kcal3).toString() + " / " + my_kcal.toString()
 
 
                 }
@@ -493,6 +554,8 @@ class SelectFragment:Fragment() {
 
 
     private fun updatePieChart1(inputText:Float,pieChart: PieChart) {
+
+
         val pieEntries = mutableListOf<PieEntry>()
 
         if (inputText in 0f..100f) {
@@ -551,7 +614,7 @@ class SelectFragment:Fragment() {
         pieChart.legend.isEnabled = false
 
         val colors: ArrayList<Int> = ArrayList()
-        colors.add(Color.GREEN) // Color for carbo_percent_oneday
+        colors.add(Color.RED) // Color for carbo_percent_oneday
         colors.add(Color.DKGRAY) // Blank color for the remaining portion
         dataSet.colors = colors
 
@@ -585,7 +648,7 @@ class SelectFragment:Fragment() {
         pieChart.legend.isEnabled = false
 
         val colors: ArrayList<Int> = ArrayList()
-        colors.add(Color.GREEN) // Color for carbo_percent_oneday
+        colors.add(Color.BLUE) // Color for carbo_percent_oneday
         colors.add(Color.DKGRAY) // Blank color for the remaining portion
         dataSet.colors = colors
 
@@ -595,6 +658,40 @@ class SelectFragment:Fragment() {
         pieChart.invalidate()
     }
 
+
+    private fun updatePieChart4(inputText:Float,pieChart: PieChart) {
+        val pieEntries = mutableListOf<PieEntry>()
+
+        if (inputText in 0f..100f) {
+            pieEntries.add(PieEntry(inputText,"칼로리"))
+            pieEntries.add(PieEntry((100f - inputText)))
+        } else {
+            pieEntries.add(PieEntry(0f))
+            pieEntries.add(PieEntry(100f))
+        }
+
+        val dataSet = PieDataSet(pieEntries, "")
+        dataSet.setDrawIcons(false)
+
+        val data = PieData(dataSet)
+        data.setValueFormatter(PercentFormatter())
+        data.setValueTextSize(10f)
+        data.setValueTypeface(Typeface.DEFAULT_BOLD)
+        data.setValueTextColor(Color.BLACK)
+        pieChart.setData(data)
+        pieChart.description.isEnabled=false
+        pieChart.legend.isEnabled = false
+
+        val colors: ArrayList<Int> = ArrayList()
+        colors.add(Color.CYAN) // Color for carbo_percent_oneday
+        colors.add(Color.DKGRAY) // Blank color for the remaining portion
+        dataSet.colors = colors
+
+
+        pieChart.animateY(1000, Easing.EaseInOutQuad)
+
+        pieChart.invalidate()
+    }
 
     override fun onDestroy() {
         super.onDestroy()
