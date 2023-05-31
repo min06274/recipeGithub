@@ -19,6 +19,8 @@ data class LogData(
     val protein_percent:String,
     val fat_percent:String,
 
+    val print_kcal:String,
+    val total_kcal:String,
 
 
     val log_id:String

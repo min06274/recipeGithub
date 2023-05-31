@@ -388,7 +388,7 @@
   {"id": "43",
     "name": "씨알로 우리쌀프레이크",
     "kcal": "4",
-    "information": "100g 당 탄수화물: 88 단백질: 5 지방: 00",
+    "information": "100g 당 탄수화물: 88 단백질: 5 지방: 01",
     "spec": "탄수화물 특화 시리얼 입니다.",
     "img_url": "https://raw.githubusercontent.com/BlackJackLJM/shoppi-kotlin-console-app/main/%EC%8B%9C%EB%A6%AC%EC%96%BC%20%EB%A9%94%EC%9D%B8%20%EC%9D%B4%EB%AF%B8%EC%A7%80/%EC%94%A8%EC%95%8C%EB%A1%9C%20%EC%9A%B0%EB%A6%AC%EC%8C%80%ED%94%84%EB%A0%88%EC%9D%B4%ED%81%AC.jpg",
     "purchase_url": "https://www.coupang.com/vp/products/180305?itemId=329151&vendorItemId=3000239409&q=%EC%94%A8%EC%95%8C%EB%A1%9C+%EC%9A%B0%EB%A6%AC%EC%8C%80%ED%94%84%EB%A0%88%EC%9D%B4%ED%81%AC&itemsCount=36&searchId=ad159f0426744fe4a1a878e73529ae02&rank=1&isAddedCart="},
@@ -483,6 +483,8 @@
       "carbo_percent": "30%",
       "protein_percent": "31%",
       "fat_percent": "32%",
+      "print_kcal" : "250",
+      "total_kcal": "1800",
       "log_id": "0"
     }
   ]

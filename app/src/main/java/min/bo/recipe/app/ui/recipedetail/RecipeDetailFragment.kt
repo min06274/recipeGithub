@@ -21,10 +21,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import min.bo.recipe.app.common.KEY_CARBO
-import min.bo.recipe.app.common.KEY_FAT
-import min.bo.recipe.app.common.KEY_PROTEIN
-import min.bo.recipe.app.common.KEY_RESULT
+import min.bo.recipe.app.common.*
 import min.bo.recipe.app.databinding.FragmentRecipeDetailBinding
 import min.bo.recipe.app.model.CerealData
 import min.bo.recipe.app.model.LogData
@@ -59,26 +56,42 @@ class RecipeDetailFragment:Fragment() {
         setNavigation()
 
 
-        /*
-        println(requireArguments().getInt(KEY_CARBO))
-        println(requireArguments().getInt(KEY_PROTEIN))
-        println(requireArguments().getInt(KEY_FAT))
-        println(requireArguments().getDouble(KEY_RESULT))
-*/
+
+        println("넘어온이후~~~~\n\n\n")
+
+        println(requireArguments().getInt(KEY_CARTRIDGE_GRAM1))
+        println(requireArguments().getInt(KEY_CARTRIDGE_GRAM2))
+        println(requireArguments().getInt(KEY_CARTRIDGE_GRAM3))
+        println(requireArguments().getDouble(KEY_CARBO))
+        println(requireArguments().getDouble(KEY_PROTEIN))
+        println(requireArguments().getDouble(KEY_FAT))
+
+        println(requireArguments().getInt(KEY_PRINT_KCAL))
+        println(requireArguments().getDouble(KEY_TOTAL_KCAL))
 
 
-        val carbo_one_percent = 3.3*requireArguments().getDouble(KEY_RESULT)/2000 //자신의 기초대사량에서 1%인 탄수g
+
+
+        val carbo_one_percent = 3.3*requireArguments().getDouble(KEY_TOTAL_KCAL)/2000 //자신의 기초대사량에서 1%인 탄수g
         //넘어온 탄수 g값이 자신의 탄수화물 일일섭취량의 몇퍼센트인지
-        val carbo_percent_oneday = (requireArguments().getInt(KEY_CARBO) / carbo_one_percent).toFloat()
+        val carbo_percent_oneday = (requireArguments().getDouble(KEY_CARBO) / carbo_one_percent).toFloat()
+
+        val protein_one_percent = 0.5*requireArguments().getDouble(KEY_TOTAL_KCAL)/2000
+        val proetein_percent_oneday = (requireArguments().getDouble(KEY_PROTEIN) / protein_one_percent).toFloat()
 
 
-        println("carbopercent_oneday"+carbo_percent_oneday)
-        binding.pieChart.setUsePercentValues(true)
-        val carboPercentage = requireArguments().getInt(KEY_CARBO).toFloat()
+        val fat_one_percent = 0.4*requireArguments().getDouble(KEY_TOTAL_KCAL)/2000
+        val fat_percent_oneday = (requireArguments().getDouble(KEY_FAT) / fat_one_percent).toFloat()
+
+
+        binding.pieChart1.setUsePercentValues(true)
+
 
         val entries: ArrayList<PieEntry> = ArrayList()
         entries.add(PieEntry(carbo_percent_oneday,"탄수화물"))
         entries.add(PieEntry(100f-carbo_percent_oneday,""))
+
+
 
         val dataSet = PieDataSet(entries, "")
         dataSet.setDrawIcons(false)
@@ -89,9 +102,9 @@ class RecipeDetailFragment:Fragment() {
         data.setValueTextSize(15f)
         data.setValueTypeface(Typeface.DEFAULT_BOLD)
         data.setValueTextColor(Color.WHITE)
-        binding.pieChart.setData(data)
-        binding.pieChart.description.isEnabled = false
-        binding.pieChart.legend.isEnabled = false
+        binding.pieChart1.setData(data)
+        binding.pieChart1.description.isEnabled = false
+        binding.pieChart1.legend.isEnabled = false
 
 
 
@@ -101,9 +114,54 @@ class RecipeDetailFragment:Fragment() {
         dataSet.colors = colors
 
 
-        binding.pieChart.animateY(1000, Easing.EaseInOutQuad)
+        binding.pieChart1.animateY(1000, Easing.EaseInOutQuad)
 
-        binding.pieChart.invalidate()
+        binding.pieChart1.invalidate()
+
+
+
+        binding.pieChart2.setUsePercentValues(true)
+
+        val entries2:ArrayList<PieEntry> = ArrayList()
+        entries2.add(PieEntry(proetein_percent_oneday,"단백질"))
+        entries2.add(PieEntry(100f-proetein_percent_oneday,""))
+
+
+
+        val dataSet2 = PieDataSet(entries2,"")
+        dataSet2.setDrawIcons(false)
+
+        val data2 = PieData(dataSet2)
+        data2.setValueFormatter(PercentFormatter())
+
+        data2.setValueTextSize(15f)
+        data2.setValueTypeface(Typeface.DEFAULT_BOLD)
+        data2.setValueTextColor(Color.WHITE)
+        binding.pieChart2.setData(data2)
+        binding.pieChart2.description.isEnabled=false
+        binding.pieChart2.legend.isEnabled=false
+
+        dataSet2.colors = colors
+
+
+        binding.pieChart2.animateY(1000, Easing.EaseInOutQuad)
+
+        binding.pieChart2.invalidate()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         binding.addLogBtn.setOnClickListener{
 
@@ -135,6 +193,8 @@ class RecipeDetailFragment:Fragment() {
                         carbo_percent = "1%",
                         protein_percent = "2%",
                         fat_percent = "3%",
+                        print_kcal = "250",
+                        total_kcal = "1800",
                         log_id = count.toString()
 
                     )
