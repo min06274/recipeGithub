@@ -105,7 +105,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/cereal_detail_kcal"
             app:layout_constraintStart_toStartOf="parent"
-            android:text="탄수에 추가"
+            android:text="1번에 추가"
             />
 
         <Button
@@ -116,7 +116,7 @@
             app:layout_constraintEnd_toStartOf="@id/cereal_detail_fat_btn"
             app:layout_constraintStart_toEndOf="@id/cereal_detail_carbo_btn"
 
-            android:text="단백질에 추가"
+            android:text="2번에 추가"
             />
 
         <Button
@@ -126,7 +126,7 @@
             app:layout_constraintTop_toBottomOf="@id/cereal_detail_kcal"
             app:layout_constraintEnd_toEndOf="parent"
 
-            android:text="지방에 추가"
+            android:text="3번에 추가"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

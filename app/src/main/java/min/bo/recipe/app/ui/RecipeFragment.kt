@@ -343,7 +343,11 @@ class RecipeFragment: Fragment() {
                 ))
 
 
-                openRecipeDetail(first_gram,second_gram,third_gram,carbo_gram,protein_gram,fat_gram,total_kcal,result_to)
+                openRecipeDetail(first_gram,second_gram,third_gram,carbo_gram,protein_gram,fat_gram,total_kcal,result_to,
+                    first_cereal[1].toDouble(),second_cereal[1].toDouble(),third_cereal[1].toDouble(),
+                    first_cereal[2].toDouble(),second_cereal[2].toDouble(),third_cereal[2].toDouble(),
+                    first_cereal[3].toDouble(),second_cereal[3].toDouble(),third_cereal[3].toDouble(),
+                    first_cereal[0].toInt(),second_cereal[0].toInt(),third_cereal[0].toInt())
 
                 /*
                 webView = WebView(requireContext())
@@ -363,7 +367,11 @@ class RecipeFragment: Fragment() {
 
 
 
-    private fun openRecipeDetail(first_gram:Int,second_gram:Int,third_gram:Int,carbo_gram:Double,protein_gram:Double,fat_gram:Double,print_kcal:Int,total_kcal:Double){
+    private fun openRecipeDetail(first_gram:Int,second_gram:Int,third_gram:Int,carbo_gram:Double,protein_gram:Double,fat_gram:Double,print_kcal:Int,total_kcal:Double,
+    first_cereal_carbo:Double,second_cereal_carbo:Double,third_cereal_carbo:Double,
+    first_cereal_protein:Double,second_cereal_protein:Double,third_cereal_protein:Double,
+    first_cereal_fat:Double,second_cereal_fat:Double,third_cereal_fat:Double,
+    first_cereal_kcal:Int,second_cereal_kcal:Int,third_cereal_kcal:Int){
         findNavController().navigate(R.id.action_recipe_to_recipe_detail, bundleOf(
 
 
@@ -376,10 +384,28 @@ class RecipeFragment: Fragment() {
             KEY_FAT to fat_gram,
 
             KEY_PRINT_KCAL to print_kcal,
-            KEY_TOTAL_KCAL to total_kcal
+            KEY_TOTAL_KCAL to total_kcal,
+
+            KEY_FIRST_CARBO to first_cereal_carbo,
+            KEY_SECOND_CARBO to second_cereal_carbo,
+            KEY_THIRD_CARBO to third_cereal_carbo,
 
 
-        ))
+            KEY_FIRST_PROTEIN to first_cereal_protein,
+            KEY_SECOND_PROTEIN to second_cereal_protein,
+            KEY_THIRD_PROTEIN to third_cereal_protein,
+
+            KEY_FIRST_FAT to first_cereal_fat,
+            KEY_SECOND_FAT to second_cereal_fat,
+            KEY_THIRD_FAT to third_cereal_fat,
+
+            KEY_FIRST_KCAL to first_cereal_kcal,
+            KEY_SECOND_KCAL to second_cereal_kcal,
+            KEY_THIRD_KCAL to third_cereal_kcal,
+
+
+
+            ))
     }
 
 

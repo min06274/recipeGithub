@@ -599,7 +599,7 @@ class SelectFragment:Fragment() {
 
 
 
-/*
+
             webView = WebView(requireContext())
 
             webView.settings.javaScriptEnabled =true
@@ -609,7 +609,7 @@ class SelectFragment:Fragment() {
             webView.webViewClient = WebViewClient()
             webView.loadUrl("http://192.168.0.125/page1?salt="+gramInformation1+"&sugar="+gramInformation2+"&blackpepper="+gramInformation3)
 
-*/
+
             //println(gramInformation1)
 
             
