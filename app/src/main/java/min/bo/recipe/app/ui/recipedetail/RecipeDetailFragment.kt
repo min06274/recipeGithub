@@ -353,7 +353,7 @@ class RecipeDetailFragment:Fragment() {
             println(cartridge1)
             println(cartridge2)
             println(cartridge3)
-            /*
+
             webView = WebView(requireContext())
 
             webView.settings.javaScriptEnabled =true
@@ -362,7 +362,7 @@ class RecipeDetailFragment:Fragment() {
 
             webView.webViewClient = WebViewClient()
             webView.loadUrl("http://192.168.0.125/page1?salt="+cartridge1.toString()+"&sugar="+cartridge2.toString()+"&blackpepper="+cartridge3.toString())
-        */
+
 
         }
 

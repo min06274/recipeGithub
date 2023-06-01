@@ -532,10 +532,18 @@ class SelectFragment:Fragment() {
 
 
         indivisualButton.setOnClickListener{
-            val gramInformation1 = gramInformationEditText1.text.toString()
-            val gramInformation2 = gramInformationEditText2.text.toString()
-            val gramInformation3 = gramInformationEditText3.text.toString()
-
+            var gramInformation1 = gramInformationEditText1.text.toString()
+            if(gramInformation1.isNullOrEmpty()) {
+                gramInformation1 = 0.toString()
+            }
+            var gramInformation2 = gramInformationEditText2.text.toString()
+            if(gramInformation2.isNullOrEmpty()) {
+                gramInformation2 = 0.toString()
+            }
+            var gramInformation3 = gramInformationEditText3.text.toString()
+            if(gramInformation3.isNullOrEmpty()) {
+                gramInformation3 = 0.toString()
+            }
 
             logRef.addListenerForSingleValueEvent(object : ValueEventListener {
                 @RequiresApi(Build.VERSION_CODES.O)
@@ -596,6 +604,9 @@ class SelectFragment:Fragment() {
 
 
 
+            println(gramInformation1)
+            println(gramInformation2)
+            println(gramInformation3)
 
 
 
